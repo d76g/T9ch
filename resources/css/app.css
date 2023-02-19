@@ -1,8 +1,103 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 h1{
     font-family: 'Jomhuria', cursive;
-    font-size: 4rem;
+}
+.code-container{
+    background-image: linear-gradient(to right bottom, #212f3d, #202d3a, #1e2b38, #1d2a35, #1c2833);
+}
+.code-cover{
+    background-image: linear-gradient(to right top, #6e00ff, #003cdb, #003fa7, #00366c, #1c2833);
+}
+.roadmap-container-1:hover > div .roadmap-number , .roadmap-container-3:hover > div .roadmap-number{
+    background-color: #191B28;
+    color: #F0F4F3;
+    transition: all .5s;
+    transition-timing-function: ease-in;
+}
+.roadmap-container-2:hover > div .roadmap-number , .roadmap-container-4:hover > div .roadmap-number{
+    background-color: #FFCF00;
+    color: #191B28;
+    transition: all .5s;
+    transition-timing-function: ease-in;
+}
+.roadmap-container-1:hover > .explore-roadmap i , .roadmap-container-3:hover > .explore-roadmap i{
+    transform: translateX(-0.75rem);
+    color: #191B28;
+    transition: all .5s;
+    transition-timing-function: ease-in-out;
+}
+.roadmap-container-1:hover > .explore-roadmap p, .roadmap-container-3:hover > .explore-roadmap p{
+    color: #191B28;
+    transition: all .5s;
+    transition-timing-function: ease-in-out;
+}
+.roadmap-container-2:hover > .explore-roadmap i , .roadmap-container-4:hover > .explore-roadmap i{
+    transform: translateX(-0.75rem);
+    color: #191B28;
+    transition: all .5s;
+    transition-timing-function: ease-in-out;
+}
+.roadmap-container-2:hover > .explore-roadmap p, .roadmap-container-4:hover > .explore-roadmap p{
+    color: #191B28;
+    transition: all .5s;
+    transition-timing-function: ease-in-out;
+}
+.roadmap-title {
+    display: inline-block;
+    position: relative;
+  }
+  
+.roadmap-title::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #FFCF00;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+  
+.roadmap-container-1:hover > div .roadmap-title::after , .roadmap-container-3:hover > div .roadmap-title::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.roadmap-container-2:hover > div .roadmap-title::after , .roadmap-container-4:hover > div .roadmap-title::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.menu-list a:hover{
+    transform: translateX(0.5rem);
+    transition: all .5s;
+    transition-timing-function: ease-in-out;
+    padding-left: 4px;
+}
+.menu-list a::before{
+    content: '';
+    width: 5px;
+    height: 10px;
+    position: absolute;
+    margin-right: 2px;
+    transform: scaleX(0);
+    transform-origin: left right;
+    transition: transform 0.25s ease-out;
+    background-color: #FFCF00;
+}
+.menu-list a:hover::before{
+    transform: scaleX(1);
+    transition: transform 0.25s ease-out;
+}
+pre{
+    text-align: left;
+    padding: 20px 25px;
+    margin: 10px 0;
+    border-radius: 20px;
+    
+}
+code{
+    font-family: 'Fira Code', monospace;
 }

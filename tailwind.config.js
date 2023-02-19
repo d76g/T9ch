@@ -32,14 +32,16 @@ module.exports = {
                 jomhuria:['Jomhuria'],
                 changa:['Changa'],
                 plex:['IBM Plex Sans Arabic'],
-                playfair:['Playfair Display']
+                playfair:['Playfair Display'],
+                space:['Space Mono'],
             },
             colors:{
                 'dark-blue':'#191B28',
                 'blue':'#6E00FF',
                 'yellow':'#FFCF00',
-                'gray':'#F0F4F3',
-                'red':'#EF5141'
+                'Mygray':'#F0F4F3',
+                'red':'#EF5141',
+                'code':'#1C2833'
             },
             height:{
                 '90vh': '90vh',
