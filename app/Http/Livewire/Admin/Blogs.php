@@ -2,14 +2,16 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Blog;
+
 use Livewire\Component;
+use App\Models\Blog;
+use App\Models\Category;
 use App\Models\Catergories;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use App\Models\Language;
+use App\Models\Hashtag;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class Blogs extends Component
 {
     use WithFileUploads;
@@ -18,14 +20,21 @@ class Blogs extends Component
     public string $readingTime;
     public $blogPhoto;
     public $category;
-    protected $listeners  = ['store'];
+    public $hashtags = [];
+    public $language;
+    protected $listeners  = ['store', 'destroy'];
     protected $rules = [
-        'title' => 'required|min:10|max:255',
-        'blogPhoto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4000',
-        'content' => 'required|string|min:10',
+        'title' => 'required|min:10|max:100',
+        'content' => 'required|string|min:100',
         'readingTime' => 'required|min:3|max:100',
         'category' => 'required',
+        'hashtags' => 'required',
+        'language' => 'required',
     ];
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
     public function BlogAdded()
     {
         $this->emit('getContent');
@@ -52,21 +61,35 @@ class Blogs extends Component
     public function store($content)
     {
         $this->content = $content;
-        $this->validate();
+        $validatedData = $this->validate();
         try {
-            $imageName = time() . '.' . $this->blogPhoto->extension();
-            $blogPhoto = $this->blogPhoto->storeAs('blog-images', $imageName, 'public');
-            Blog::create([
+            if ($this->blogPhoto == null) {
+                $blogPhoto = null;
+            } else {
+                $imageName = time() . '.' . $this->blogPhoto->extension();
+                $blogPhoto = $this->blogPhoto->storeAs('blog-images', $imageName, 'public');
+            }
+            $blog = Blog::create([
                 'title' => $this->title,
                 'slug' => $this->slug_ar($this->title),
                 'blog_photo' => $blogPhoto,
                 'content' => $this->content,
                 'reading_time' => $this->readingTime,
                 'category_id' => $this->category,
+                'language_id' => $this->language,
                 'user_id' => Auth::id(),
             ]);
+            if (!empty($this->hashtags)) {
+                $blog->hashtags()->attach($this->hashtags);
+            }
+            $this->dispatchBrowserEvent('store', [
+                'type' => 'success',
+                'title' => 'Blog Published.',
+                'icon' => 'success',
+                'iconColor' => 'green',
+            ]);
             $this->resetInput();
-            redirect()->back();
+            session()->flash('message', 'Blog Published.');
         } catch (\Throwable $th) {
             dd($th);
         }
@@ -78,6 +101,32 @@ class Blogs extends Component
         $this->blogPhoto = '';
         $this->readingTime = '';
         $this->category = '';
+        $this->hashtags = [];
+        $this->language = '';
+    }
+    public function deleteConfirm($id)
+    {
+        $this->dispatchBrowserEvent('delete', [
+            'title' => 'Are you sure?',
+            'text' => "You won't be able to revert this!",
+            'icon' => 'warning',
+            'id' => $id,
+        ]);
+    }
+    public function destroy($id)
+    {
+        try{
+            Blog::find($id)->delete();
+            $this->dispatchBrowserEvent('deleted', [
+                'type' => 'success',
+                'title' => 'Blog Deleted.',
+                'icon' => 'success',
+                'iconColor' => 'green',
+            ]);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+        
     }
     public function show(Blog $blog)
     {
@@ -87,7 +136,9 @@ class Blogs extends Component
     {
         return view('livewire.admin.blogs', [
             'blog' => Blog::all(),
-            'categories' => Catergories::all(),
+            'categories' => Category::all(),
+            'languages' => Language::all(),
+            'hashtagsList' => Hashtag::all(),
         ]);
     }
 }

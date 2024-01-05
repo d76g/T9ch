@@ -21,7 +21,9 @@ return new class extends Migration
             $table->string('reading_time');
             $table->string('blog_photo', 2048)->nullable();
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('catergories');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('language_id');
+            $table->foreign('language_id')->references('id')->on('languages');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

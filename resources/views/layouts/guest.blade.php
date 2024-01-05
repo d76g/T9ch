@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" type="image/png" href="{{URL::asset('image/logo.png')}}">
-        <title>تقنية  @yield('title')</title>
+        <title>@yield('title')</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,12 +19,12 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
-    <body>
-        <div class="bg-Mygray antialiased">
+    <body class="bg-Mygray antialiased">
+        <div class="w-full min-h-screen">
             {{ $slot }}
         </div>
         @stack('modals')
-
+    
         @livewireScripts
         
     </body>

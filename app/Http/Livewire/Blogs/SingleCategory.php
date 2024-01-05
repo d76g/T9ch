@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Blogs;
 
+use App\Models\Category;
 use App\Models\Catergories;
 use Livewire\Component;
 
@@ -11,7 +12,7 @@ class SingleCategory extends Component
 
     public function mount($category)
     {
-        $this->category = Catergories::where('category', '=', $category)->first();
+        $this->category = Category::where('category', '=', $category)->first();
     }
     public function render()
     {

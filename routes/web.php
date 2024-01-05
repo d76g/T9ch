@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\CategoryList;
-use App\Http\Controllers\Catergories;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Admin\BlogCategory as AdminBlogCategory;
 use App\Http\Livewire\Admin\Blogs;
+use App\Http\Livewire\Admin\EditBlog;
 use App\Http\Livewire\BlogCategory;
 use App\Http\Livewire\Blogs\Index;
 use App\Http\Livewire\Blogs\SingleBlog;
@@ -34,6 +33,7 @@ Route::get('category/{category}', SingleCategory::class);
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/category', AdminBlogCategory::class)->name('category');
     Route::get('/blogs', Blogs::class)->name('adminBlogs');
+    Route::get('/blog/{id}/edit', EditBlog::class)->name('editBlog');
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');

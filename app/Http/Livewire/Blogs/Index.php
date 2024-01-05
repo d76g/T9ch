@@ -10,7 +10,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.blogs.index', [
-            'blogs' => Blog::all(),
+            'blogs' => Blog::latest()->get(),
         ])->layout('layouts.guest');
     }
 }

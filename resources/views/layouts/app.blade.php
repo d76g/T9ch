@@ -13,14 +13,14 @@
         <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@500&family=Jomhuria&family=Playfair+Display:wght@400;500&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Styles -->
         @livewireStyles
     </head>
     <body class="font-playfair antialiased">
         <x-jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen max-h-max bg-gray-100">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
@@ -36,10 +36,11 @@
             <main>
                 {{ $slot }}
             </main>
+            
         </div>
-
+        
         @stack('modals')
-
         @livewireScripts
     </body>
 </html>
+<script src="{{asset('js/sweetAlertEvents.js')}}"></script>

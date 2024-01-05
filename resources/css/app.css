@@ -1,8 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+[x-cloak] { display: none !important; }
 h1{
     font-family: 'Jomhuria', cursive;
+}
+h2{
+    font-size: 18px;
+    padding-bottom: 5px;
 }
 .code-container{
     background-image: linear-gradient(to right bottom, #212f3d, #202d3a, #1e2b38, #1d2a35, #1c2833);
@@ -100,4 +105,16 @@ pre{
 }
 code{
     font-family: 'Fira Code', monospace;
+}
+.rtl {
+    direction: rtl;
+    text-align: right; /* or 'start' which aligns to the beginning of the line in the given direction */
+}
+.rtl pre, .rtl code {
+    direction: ltr; /* Reset to left-to-right */
+    text-align: left; /* Align text to the left */
+}
+.ltr {
+    direction: ltr;
+    text-align: left; /* or 'start' which aligns to the beginning of the line in the given direction */
 }
