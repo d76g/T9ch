@@ -10,9 +10,14 @@
             {{-- Left --}}
             <div class="flex flex-col w-96  sm:w-auto h-full lg:h-70vh gap-1 sm:gap-3 px-3 my-1"> 
                 <div class="px-1 w-full h-14 sm:h-20 md:h-22 lg:h-32 grid grid-cols-2 gap-2 rounded-xl text-Mygray">
+                    @if ($randomCategory != null)
                         <div class="bg-dark-blue rounded-xl flex justify-center items-center "><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/category/{{$randomCategory[0]->category}}">{{$randomCategory[0]->category}}</a></h1></div>
                         <div class="bg-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/category/{{$randomCategory[1]->category}}">{{$randomCategory[1]->category}}</a></h1></div>
+                    @endif
                 </div>
+                @if ($latestTwoBlogs != null)
+                    
+                
                 <div class="grid gap-2">
                 @foreach ($latestTwoBlogs as $blog)        
                 <div class="px-1 w-full h-40 sm:h-44 md:h-48 lg:h-52 bg-blue rounded-xl text-Mygray font-jomhuria {{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">
@@ -44,11 +49,12 @@
                 
                 @endforeach
                 </div>
+                @endif
             </div>
             {{-- End --}}
             {{-- Middle --}}
+            @if ($randomBlog != null)
             <div class="flex flex-col w-96  sm:w-auto h-full lg:h-70vh gap-1 sm:gap-3 px-3  my-1"> 
-                
                 <div class="px-1 w-full h-40 sm:h-44 md:h-48 lg:h-52 bg-blue rounded-xl text-Mygray font-jomhuria {{$randomBlog[0]->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">
                     <div class="p-4 flex flex-col">
                         <a href="/blog/{{$randomBlog[0]->slug}}"><span class="h-20 sm:h-22 md:h-24 lg:h-28 text-3xl sm:text-4xl md:text-5xl lg:text-4xl hover:underline hover:cursor-pointer hover:text-yellow transition ease">{{$randomBlog[0]->title}}</span></a>
@@ -103,10 +109,12 @@
             {{-- End --}}
             {{-- Right --}}
             <div class="flex flex-col w-96  sm:w-auto h-full lg:h-70vh gap-1 sm:gap-3 px-3  my-1"> 
+                @if ($randomHashtag != null)
                 <div class="px-1 w-full h-14 sm:h-20 md:h-24 lg:h-32 grid grid-cols-2 gap-2 rounded-xl text-Mygray">
                         <div class="bg-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[2]->name}}">{{$randomHashtag[2]->name}}</a></h1></div>
                         <div class="bg-dark-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[3]->name}}">{{$randomHashtag[3]->name}}</a></h1></div>
                 </div>
+                @endif
                 <div class="grid gap-2">
                 <div class="px-1 w-full h-40 sm:h-44 md:h-48 lg:h-52 bg-dark-blue rounded-xl text-Mygray font-jomhuria {{$randomBlog[2]->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">
                     <div class="p-4 flex flex-col">
@@ -132,13 +140,16 @@
                     </div>
                 </div>
                 </div>
+                @if ($randomHashtag != null)
                 <div class="px-1 w-full h-14 sm:h-20 md:h-24 lg:h-52 grid grid-cols-2 gap-2 rounded-xl text-Mygray">
                     <div class="bg-dark-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[4]->name}}">{{$randomHashtag[4]->name}}</a></h1></div>
                     <div class="bg-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[5]->name}}">{{$randomHashtag[5]->name}}</a></h1></div>
                 </div>
+                @endif
             </div>     
             {{-- End --}}
         </div>
+        @endif
         <div class="flex justify-center items-center text-3xl font-jomhuria">
             <a href="/blogs" class="hover:text-blue hover:underline transition ease-in-out  hover:scale-110">View all blogs</a>
         </div>
