@@ -2,7 +2,7 @@
     @foreach ($categories as $category)
     <div class="bg-Mygray p-5 rounded-md w-[350px] m-3 h-auto flex flex-col justify-center items-start">
         <div>
-            <p class="text-2xl">{{$category->category}}</p>
+            <a href="/category/{{$category->category}}"> <p class="text-2xl hover:text-red">{{$category->category}}</p></a>
             <p class="text-sm py-1">{{$category->desc}}</p>
         </div>
         <hr class="w-[320px] h-1">

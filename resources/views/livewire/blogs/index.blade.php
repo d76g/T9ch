@@ -19,7 +19,7 @@
             </div>
                 <div class="flex flex-row justify-start items-center px-5 h-[20px] text-sm">
                     @foreach ($blog->hashtags as $hashtag)
-                    <a href="#" class=" font-bold py-1 px-2 hover:bg-yellow rounded-lg"><span class="text-blue">#</span> {{ $hashtag->name }}</a>
+                    <a href="/hashtag/{{$hashtag->name}}" class=" font-bold py-1 px-2 hover:bg-yellow rounded-lg"><span class="text-blue">#</span> {{ $hashtag->name }}</a>
                     @endforeach
                 </div>
                 <div class="flex justify-between items-center font-plex px-1 h-16 max-h-16 text-xs pb-2">

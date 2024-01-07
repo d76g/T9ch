@@ -14,7 +14,7 @@
                         </div>
                         <div class="flex flex-row">
                                 @foreach ($blog->hashtags as $hashtag)
-                                <a href="#" class=" font-bold text-lg py-1 px-2 hover:bg-yellow rounded-lg"><span class="text-blue">#</span> {{ $hashtag->name }}</a>
+                                <a href="/hashtag/{{$hashtag->name}}" class=" font-bold text-lg py-1 px-2 hover:bg-yellow rounded-lg"><span class="text-blue">#</span> {{ $hashtag->name }}</a>
                                 @endforeach
                         </div>
                 </div>

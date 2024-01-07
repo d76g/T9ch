@@ -8,6 +8,7 @@ use App\Http\Livewire\BlogCategory;
 use App\Http\Livewire\Blogs\Index;
 use App\Http\Livewire\Blogs\SingleBlog;
 use App\Http\Livewire\Blogs\SingleCategory;
+use App\Http\Livewire\Blogs\SingleHashtag;
 use Illuminate\Support\Facades\Route;
 
 use function Pest\Laravel\get;
@@ -29,6 +30,7 @@ Route::get('/', function () {
 Route::get('/blogs', Index::class)->name('blogs');
 Route::get('/blog/{slug}', SingleBlog::class);
 Route::get('category/{category}', SingleCategory::class);
+Route::get('hashtag/{hashtag}', SingleHashtag::class);
 // Admin Routes
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/category', AdminBlogCategory::class)->name('category');

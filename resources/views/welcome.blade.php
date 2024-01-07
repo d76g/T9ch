@@ -13,11 +13,12 @@
     </nav>
     <div class="relative min-w-full h-auto overflow-hidden">
         {{-- Main Content --}}
-        <div class="h-50vh lg:h-90vh w-full sm:w-full flex items-center m-auto bg-dark-blue">
-            <div class="w-2/5 flex justify-center items-center text-Mygray font-jomhuria text-7xl flex-col">
-                <span>الساحة العامة للبرمجة</span>
+        <div class="h-50vh lg:h-90vh w-full sm:w-full flex items-center justify-center m-auto bg-dark-blue">
+            <div class="lg:w-2/5 flex justify-center items-center text-Mygray font-jomhuria  flex-col">
+                <span class="text-7xl">الساحة العامة للبرمجة</span>
+                <span class="text-xl font-plex text-yellow">مدونة خاصة - Personal Blog</span>
             </div>
-            <div class="code-cover w-3/5 h-70vh rounded-l-xl flex justify-end items-center">
+            <div class="code-cover w-3/5 h-70vh rounded-l-xl lg:flex justify-end items-center hidden">
                 <div class="relative code-container w-[95%] h-[90%] rounded-l-xl my-8 text-sm flex">
                     <div class="h-4/5 w-1/5 my-8">
                         <span class="flex flex-col pl-8 mt-2 text-yellow font-space w-52">
@@ -60,85 +61,10 @@
             </div>
         </div>
         {{-- Blog --}}
+        
             @livewire('blogs.home-content')
-        {{-- Resources --}}
-        <div class="h-full lg:h-80vh mt-6 sm:mt-8 lg:mt-12 flex flex-col justify-center items-center">
-            <div class="flex mb-6">
-                <div class="flex flex-col">
-                    <h1 class="text-4xl md:text-7xl">مسارات</h1>
-                    <div class="w-full h-1 bg-dark-blue "></div>
-                </div>
-            </div>
-            <div class="lg:h-60vh lg:w-3/4 sm:w-4/5 flex justify-center items-center">
-                <div class="lg:h-60vh grid grid-rows-4 sm:grid-rows-2 sm:grid-cols-2 lg:grid-rows-none lg:grid-cols-4 gap-2 sm:gap-6 lg:gap-8 justify-center items-center">
-                    <div class="w-52 h-56 sm:w-72 sm:h-80 lg:w-60 lg:h-72 bg-blue rounded-md transition ease-in-out duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-gradient-to-t from-Mygray hover:shadow-md hover:outline outline-offset-4 outline-2 outline-blue">
-                        <div class="roadmap-container-1 flex flex-col justify-evenly items-center w-full h-full py-8 sm:py-0">
-                            <div class="flex justify-between w-full px-3 items-center">
-                                <div class="roadmap-number h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-Mygray text-dark-blue font-bold font-playfair flex justify-center text-2xl lg:text-3xl"><p>1</p></div>
-                                <div class="roadmap-title font-jomhuria text-right text-Mygray text-3xl sm:text-4xl"><p>الواجهة الأمامية</p></div>
-                            </div>
-                            <div class="text-center text-Mygray font-changa my-3 px-1 lg:my-2 text-sm sm:text-xl sm:px-2">
-                                <p>مسار تطوير الواجهة الأمامية للمواقع و الأنظمة من خلال لغات</p>
-                                <p>HTML, CSS & JavaScript</p>
-                            </div>
-                            <div class="explore-roadmap font-changa text-Mygray w-full h-12 px-3 flex justify-center items-center transition hover:cursor-pointer ease-in sm:text-xl">
-                                <i class="fas fa-long-arrow-alt-left px-6"></i>
-                                <p class="text-right">إكتشف المسار</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-52 h-56 sm:w-72 sm:h-80 lg:w-60 lg:h-72 bg-dark-blue rounded-md transition ease-in-out duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-gradient-to-t from-blue hover:shadow-md hover:outline outline-offset-4 outline-2 outline-dark-blue">
-                        <div class="roadmap-container-2 flex flex-col justify-evenly items-center w-full h-full py-8 sm:py-0">
-                            <div class="flex justify-between w-full px-3 items-center">
-                                <div class="roadmap-number h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-Mygray text-dark-blue font-bold font-playfair flex justify-center text-2xl lg:text-3xl"><p>1</p></div>
-                                <div class="roadmap-title font-jomhuria text-right text-Mygray text-3xl sm:text-4xl"><p>الواجهة الأمامية</p></div>
-                            </div>
-                            <div class="text-center text-Mygray font-changa my-3 px-1 lg:my-2 text-sm sm:text-xl sm:px-2">
-                                <p>مسار تطوير الواجهة الأمامية للمواقع و الأنظمة من خلال لغات</p>
-                                <p>HTML, CSS & JavaScript</p>
-                            </div>
-                            <div class="explore-roadmap font-changa text-Mygray w-full h-12 px-3 flex justify-center items-center transition hover:cursor-pointer ease-in sm:text-xl">
-                                <i class="fas fa-long-arrow-alt-left px-6"></i>
-                                <p class="text-right">إكتشف المسار</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-52 h-56 sm:w-72 sm:h-80 lg:w-60 lg:h-72 bg-blue rounded-md transition ease-in-out duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-gradient-to-t from-Mygray hover:shadow-md hover:outline outline-offset-4 outline-2 outline-blue">
-                        <div class="roadmap-container-3 flex flex-col justify-evenly items-center w-full h-full py-8 sm:py-0">
-                            <div class="flex justify-between w-full px-3 items-center">
-                                <div class="roadmap-number h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-Mygray text-dark-blue font-bold font-playfair flex justify-center text-2xl lg:text-3xl"><p>1</p></div>
-                                <div class="roadmap-title font-jomhuria text-right text-Mygray text-3xl sm:text-4xl"><p>الواجهة الأمامية</p></div>
-                            </div>
-                            <div class="text-center text-Mygray font-changa my-3 px-1 lg:my-2 text-sm sm:text-xl sm:px-2">
-                                <p>مسار تطوير الواجهة الأمامية للمواقع و الأنظمة من خلال لغات</p>
-                                <p>HTML, CSS & JavaScript</p>
-                            </div>
-                            <div class="explore-roadmap font-changa text-Mygray w-full h-12 px-3 flex justify-center items-center transition hover:cursor-pointer ease-in sm:text-xl">
-                                <i class="fas fa-long-arrow-alt-left px-6"></i>
-                                <p class="text-right">إكتشف المسار</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-52 h-56 sm:w-72 sm:h-80 lg:w-60 lg:h-72 bg-dark-blue rounded-md transition ease-in-out duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-gradient-to-t from-blue hover:shadow-md hover:outline outline-offset-4 outline-2 outline-dark-blue">
-                        <div class="roadmap-container-4 flex flex-col justify-evenly items-center w-full h-full py-8 sm:py-0">
-                            <div class="flex justify-between w-full px-3 items-center">
-                                <div class="roadmap-number h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-Mygray text-dark-blue font-bold font-playfair flex justify-center text-2xl lg:text-3xl"><p>1</p></div>
-                                <div class="roadmap-title font-jomhuria text-right text-Mygray text-3xl sm:text-4xl"><p>الواجهة الأمامية</p></div>
-                            </div>
-                            <div class="text-center text-Mygray font-changa my-3 px-1 lg:my-2 text-sm sm:text-xl sm:px-2">
-                                <p>مسار تطوير الواجهة الأمامية للمواقع و الأنظمة من خلال لغات</p>
-                                <p>HTML, CSS & JavaScript</p>
-                            </div>
-                            <div class="explore-roadmap font-changa text-Mygray w-full h-12 px-3 flex justify-center items-center transition hover:cursor-pointer ease-in sm:text-xl">
-                                <i class="fas fa-long-arrow-alt-left px-6"></i>
-                                <p class="text-right">إكتشف المسار</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
+           
+            
         {{-- Footer --}}
         <div class="flex justify-center items-center my-4">
             <footer class="p-4 bg-dark-blue text-Mygray rounded-lg shadow md:px-6 md:py-8 dark:bg-Mygray-900 w-11/12">

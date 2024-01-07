@@ -2,7 +2,7 @@
     @foreach ($hashtags as $hashtag)
     <div class="bg-Mygray p-5 rounded-md w-[350px] m-3 h-auto flex flex-col justify-center items-start">
         <div>
-            <p class="text-2xl"># {{$hashtag->name}}</p>
+            <a href="/hashtag/{{$hashtag->name}}"><p class="text-2xl hover:text-red"># {{$hashtag->name}}</p></a>
             <p class="text-sm py-1">{{$hashtag->description}}</p>
         </div>
         <hr class="w-[320px] h-1">
