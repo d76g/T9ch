@@ -108,7 +108,7 @@ class Blogs extends Component
     {
         $this->dispatchBrowserEvent('delete', [
             'title' => 'Are you sure?',
-            'text' => "You won't be able to revert this!",
+            'text' => "This will soft delete the blog and you can delete it permanently on the next step.",
             'icon' => 'warning',
             'id' => $id,
         ]);
@@ -128,6 +128,17 @@ class Blogs extends Component
         }
         
     }
+    public function restoreBlog($id)
+    {
+        $blog = Blog::withTrashed()->find($id);
+        $blog->restore();
+        return redirect()->refresh();
+    }
+    public function forceDeleteBlog($id)
+    {
+        $blog = Blog::withTrashed()->find($id);
+        $blog->forceDelete();
+    }
     public function show(Blog $blog)
     {
         return $blog;
@@ -135,7 +146,7 @@ class Blogs extends Component
     public function render()
     {
         return view('livewire.admin.blogs', [
-            'blog' => Blog::all(),
+            'blog' => Blog::withTrashed()->get(),
             'categories' => Category::all(),
             'languages' => Language::all(),
             'hashtagsList' => Hashtag::all(),

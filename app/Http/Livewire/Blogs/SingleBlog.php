@@ -15,8 +15,12 @@ class SingleBlog extends Component
     }
     public function render()
     {
+        $relatedBlogs = Blog::where('id', '!=', $this->blog->id)
+                            ->inRandomOrder()
+                            ->limit(4)
+                            ->get();
         return view('livewire.blogs.single-blog', [
-            'relatedBlog' => Blog::inRandomOrder()->limit(4)->get(),
+            'relatedBlog' => $relatedBlogs,
         ])->layout('layouts.guest');
     }
 }

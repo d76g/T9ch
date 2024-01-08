@@ -14,6 +14,7 @@ class HomeContent extends Component
                 'randomCategory' => \App\Models\Category::inRandomOrder()->take(2)->get(),
                 'randomHashtag' => \App\Models\Hashtag::inRandomOrder()->take(6)->get(),
                 'randomBlog' => \App\Models\Blog::inRandomOrder()->take(3)->get(),
+                'blogs' => \App\Models\Blog::all(),
             ]);
     }
 }

@@ -104,7 +104,7 @@
         @else
         <div class="w-fit md:w-[95%] min-h-fit bg-gray-100 rounded-md flex md:justify-center md:items-center mx-2 overflow-auto">
           <table class="table-auto w-3/5 md:w-11/12 text-xs md:text-sm text-left text-gray-500 dark:text-gray-400 my-4 mx-2">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                   <th scope="col" class="py-3 px-6">ID</th>
                   <th scope="col" class="py-3 px-6">Title</th>
@@ -115,18 +115,26 @@
               </thead>
               <tbody>
                   @foreach ($blog as $data)
-                       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                       <tr class=" border-b  {{$data->deleted_at == null ? 'bg-white text-dark-blue' : 'bg-slate-50'}}">
                           <td class="py-4 px-6" wire:key="data-{{ $data->id }}">{{$data->id}}</td>
                           <td class="py-4 px-6" wire:key="data-{{ $data->id }}">
-                                <a class="dark:hover:text-white" href="/blog/{{$data->slug}}">{{$data->title}}</a>
+                                <a class="dark:hover:text-blue" href="/blog/{{$data->slug}}">{{$data->title}}</a>
                           </td>                          
                           <td class="py-4 px-6" wire:key="data-{{ $data->id }}" >{{$data->reading_time}}</td>
                           <td class="py-4 px-6" wire:key="data-{{ $data->id }}" >{{$data->category->category}}</td>
                             <td class="py-4 px-6" wire:key="data-{{ $data->id }}" >
                                     <div class="flex justify-center items-center gap-2">
-                                        <a href="/blog/{{$data->slug}}" class="text-blue-500 hover:text-blue-800 dark:hover:text-blue-300"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('editBlog', ['id' => $data->id]) }}" class="text-green-500 hover:text-green-800 dark:hover:text-green-300"><i class="fa fa-edit"></i></a>
-                                        <a wire:click="deleteConfirm({{$data->id}})" href="#" class="text-red-500 hover:text-red-800 dark:hover:text-red-300"><i class="fa fa-trash"></i></a>
+                                        @if ($data->deleted_at == null)
+                                            <a href="/blog/{{$data->slug}}" class="text-blue-500 hover:text-blue-800 dark:hover:text-blue-300"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('editBlog', ['id' => $data->id]) }}" class="text-green-500 hover:text-green-800 dark:hover:text-green-300"><i class="fa fa-edit"></i></a>
+                                        @else
+                                            <a wire:click="restoreBlog({{$data->id}})" href="" class="text-dark-blue text-xs">restore</a>
+                                        @endif
+                                        @if ($data->deleted_at == null)
+                                            <a wire:click="deleteConfirm({{$data->id}})" href="#" class="text-red-500 hover:text-red-800 dark:hover:text-red-300"><i class="fa fa-trash"></i></a>
+                                        @else
+                                        <a wire:click="forceDeleteBlog({{$data->id}})" href="#" class="text-red"><i class="fa fa-trash"></i></a>
+                                        @endif
                                     </div>                          
                        </tr>
                   @endforeach

@@ -28,9 +28,11 @@
                         
                         <div class="flex justify-between w-full items-center mt-4 order-1 md:order-2">
                                 <div class="flex justify-center items-center">
+                                        @if ($blog->user->profile_photo_path !== null)
                                         <div class="w-10 h-10">
                                                 <img class="w-10 h-10 object-cover rounded-full" src="{{URL::asset('/storage/'.$blog->user->profile_photo_path)}}" alt="Creator Image">
                                         </div>
+                                        @endif
                                         <div class="flex flex-col pl-2 h-10 text-sm w-auto">
                                                 <span>{{$blog->user->name}}</span> 
                                                 <div class="flex text-gray-400">
@@ -55,13 +57,27 @@
                 </div>
         </div>
         {{-- Related Blogs --}}
-        <div class="relative w-4/6 bg-white mt-20">
-                <div class="flex">
+        <div class="relative sm:10/12 w-8/12 mt-20 mb-12">
+                <div class="flex w-full justify-around items-center font-mono">
                         @foreach ($relatedBlog as $blog)
-                            <div>
-                                {{$blog->title}}
-                            </div>
+                        <a href="/blog/{{$blog->slug}}">
+                        <div class="bg-white flex flex-col w-60 h-72  rounded-lg drop-shadow-md hover:scale-105 transition ease-in-out  hover:ring-2 ring-dark-blue overflow-clip ring-offset-4 hover:mx-5 hover:-translate-y-6">
+                                <div class="flex items-start h-full hover:bg-cyan-400 hover:rounded-b-md hover:mb-1">
+                                        <span  class="h-full text-lg font-semibold px-3 py-2 transition ease-in-out delay-200 hover:translate-y-4">{{$blog->title}}</span>
+                                </div>
+                                <div class="bg-slate-100 rounded-t-xl">
+                                        <div class="flex justify-center mt-3">
+                                                <span class="">{{$blog->category->category}}</span>
+                                        </div>
+                                        <div class="px-3 flex justify-between text-gray-500 mb-2">
+                                                <span>{{$blog->created_at->format('d M Y')}}</span>
+                                                <span> {{$blog->reading_time}}</span>
+                                        </div>
+                                </div>
+                        </div>
+                </a>
                         @endforeach
                 </div>
         </div>
 </div>
+<x-guest-footer/>
