@@ -61,7 +61,7 @@
                 <div class="flex w-full justify-around items-center font-mono">
                         @foreach ($relatedBlog as $blog)
                         <a href="/blog/{{$blog->slug}}">
-                        <div class="bg-white flex flex-col w-60 h-72  rounded-lg drop-shadow-md hover:scale-105 transition ease-in-out  hover:ring-2 ring-dark-blue overflow-clip ring-offset-4 hover:mx-5 hover:-translate-y-6">
+                        <div class="bg-white flex flex-col w-56 h-72 rounded-lg drop-shadow-md hover:scale-105 transition ease-in-out  hover:ring-2 ring-dark-blue overflow-clip ring-offset-4 hover:mx-5 hover:-translate-y-6">
                                 <div class="flex items-start h-full hover:bg-cyan-400 hover:rounded-b-md hover:mb-1">
                                         <span  class="h-full text-lg font-semibold px-3 py-2 transition ease-in-out delay-200 hover:translate-y-4">{{$blog->title}}</span>
                                 </div>

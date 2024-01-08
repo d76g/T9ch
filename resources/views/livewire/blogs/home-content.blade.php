@@ -7,7 +7,7 @@
             </div>
         </div>
         @if ($blogs->count() >= 4)
-        <div class="grid grid-rows-3 gap-0 lg:grid-cols-3 lg:gap-2 h-full lg:h-70vh lg:bg-black xl:bg-yellow">
+        <div class="grid grid-rows-3 gap-0 lg:grid-cols-3 lg:gap-2 h-full lg:h-70vh">
             {{-- Left --}}
             <div class="flex flex-col w-96  sm:w-auto h-full lg:h-70vh gap-1 sm:gap-3 px-3 my-1"> 
                 <div class="px-1 w-full h-14 sm:h-20 md:h-22 lg:h-32 grid grid-cols-2 gap-2 rounded-xl text-Mygray">
