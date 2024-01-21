@@ -37,7 +37,25 @@ class BlogCategory extends Component
         $this->validateOnly($propertyName);
     }
     protected $listeners = ['destroy'];
-
+    public static function slug_ar($string, $separator = '-')
+    {
+        if (is_null($string)) {
+            return "";
+        }
+        $string = trim($string);
+        $string = mb_strtolower($string, "UTF-8");
+        // '/' and/or '\' if found and not remoeved it will change the get request route
+        $string = str_replace('/', $separator, $string);
+        $string = str_replace('\\', $separator, $string);
+        $string = preg_replace(
+            "/[^a-z0-9_\sءاأإآؤئبتثجحخدذرزسشصضطظعغفقكلمنهويةى]#u/",
+            "",
+            $string
+        );
+        $string = preg_replace("/[\s-]+/", " ", $string);
+        $string = preg_replace("/[\s_]/", $separator, $string);
+        return $string;
+    }
     public function store()
     {
         $validatedData = $this->validate([
@@ -49,6 +67,7 @@ class BlogCategory extends Component
             Category::create([
                 'category' => $this->category,
                 'desc' => $this->desc,
+                'slug' => $this->slug_ar($this->category),
             ]);
             $this->dispatchBrowserEvent('store', [
                 'type' => 'success',
@@ -110,12 +129,16 @@ class BlogCategory extends Component
     {
             if($name == 'Category'){
                 $this->validate([
-                    'categoryList.*.category' => 'required|min:6|max:50',
+                    'categoryList.*.category' => 'required|min:3|max:50',
                     'categoryList.*.desc' => 'required|min:10|string|max:255',
                 ]);
                 $updateCategory = $this->categoryList[$id] ?? null;
                 if(!is_null($updateCategory)){
-                    optional(Category::find($updateCategory['id']))->update($updateCategory);             
+                    $category = Category::find($updateCategory['id']);
+                    if($category){
+                        $updateCategory['slug'] = $this->slug_ar($updateCategory['category']);
+                        $category->update($updateCategory);
+                    }           
                 }
             } else {
                 $this->validate([

@@ -29,8 +29,8 @@ Route::get('/', function () {
 });
 Route::get('/blogs', Index::class)->name('blogs');
 Route::get('/blog/{slug}', SingleBlog::class);
-Route::get('category/{category}', SingleCategory::class);
-Route::get('hashtag/{hashtag}', SingleHashtag::class);
+Route::get('category/{slug:slug}', SingleCategory::class);
+Route::get('hashtag/{hashtag:name}', SingleHashtag::class)->name('hashtag');
 // Admin Routes
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/category', AdminBlogCategory::class)->name('category');

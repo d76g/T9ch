@@ -20,7 +20,7 @@ class RegistrationTest extends TestCase
             return;
         }
 
-        $response = $this->get('/register');
+        $response = $this->get('/join');
 
         $response->assertStatus(200);
     }
@@ -33,12 +33,12 @@ class RegistrationTest extends TestCase
             return;
         }
 
-        $response = $this->get('/register');
+        $response = $this->get('/join');
 
         $response->assertStatus(404);
     }
 
-    public function test_new_users_can_register(): void
+    public function test_new_users_can_join(): void
     {
         if (! Features::enabled(Features::registration())) {
             $this->markTestSkipped('Registration support is not enabled.');
@@ -46,7 +46,7 @@ class RegistrationTest extends TestCase
             return;
         }
 
-        $response = $this->post('/register', [
+        $response = $this->post('/join', [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',

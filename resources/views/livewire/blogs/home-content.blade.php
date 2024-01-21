@@ -12,8 +12,8 @@
             <div class="flex flex-col w-96  sm:w-auto h-full lg:h-70vh gap-1 sm:gap-3 px-3 my-1"> 
                 <div class="px-1 w-full h-14 sm:h-20 md:h-22 lg:h-32 grid grid-cols-2 gap-2 rounded-xl text-Mygray">
                     @if ($randomCategory != null)
-                        <div class="bg-dark-blue rounded-xl flex justify-center items-center "><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/category/{{$randomCategory[0]->category}}">{{$randomCategory[0]->category}}</a></h1></div>
-                        <div class="bg-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/category/{{$randomCategory[1]->category}}">{{$randomCategory[1]->category}}</a></h1></div>
+                        <div class="bg-dark-blue rounded-xl flex justify-center items-center "><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/category/{{$randomCategory[0]->slug}}">{{$randomCategory[0]->category}}</a></h1></div>
+                        <div class="bg-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/category/{{$randomCategory[1]->slug}}">{{$randomCategory[1]->category}}</a></h1></div>
                     @endif
                 </div>
                 <div class="grid gap-2">
@@ -39,7 +39,7 @@
                             <x-eos-fiber-new-o  class="h-10 w-10 animate-pulse"/>
                         </div>
                         <div class="flex justify-between w-auto font-plex items-end text-sm">
-                            <p><i class="fas fa-book px-1"></i><a href="/category/{{$blog->category->category}}">{{$blog->category->category}}</a> </p>
+                            <p><i class="fas fa-book px-1"></i><a href="/category/{{$blog->category->slug}}">{{$blog->category->category}}</a> </p>
                             <p class="blog-readingTime"><i class="far fa-clock px-1"></i>{{$blog->reading_time}}</p>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                             @endphp
                         </span>
                         <div class="flex justify-between w-auto my-2 font-plex items-end text-sm">
-                            <p><i class="fas fa-book px-1"></i> <a href="/category/{{$randomBlog[0]->category->category}}">{{$randomBlog[0]->category->category}}</a></p>
+                            <p><i class="fas fa-book px-1"></i> <a href="/category/{{$randomBlog[0]->category->slug}}">{{$randomBlog[0]->category->category}}</a></p>
                             <p class="blog-readingTime"><i class="far fa-clock px-1"></i>{{$randomBlog[0]->reading_time}}</p>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                             @endphp
                         </span>
                         <div class="flex justify-between w-auto my-2 font-plex items-end text-sm">
-                            <p><i class="fas fa-book px-1"></i> <a href="/category/{{$randomBlog[1]->category->category}}">{{$randomBlog[1]->category->category}}</a></p>
+                            <p><i class="fas fa-book px-1"></i> <a href="/category/{{$randomBlog[1]->category->slug}}">{{$randomBlog[1]->category->category}}</a></p>
                             <p class="blog-readingTime"><i class="far fa-clock px-1"></i>{{$randomBlog[1]->reading_time}}</p>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                             @endphp
                         </span>
                         <div class="flex justify-between w-auto my-2 font-plex items-end text-sm">
-                            <p><i class="fas fa-book px-1"></i> <a href="/category/{{$randomBlog[2]->category->category}}">{{$randomBlog[2]->category->category}}</a></p>
+                            <p><i class="fas fa-book px-1"></i> <a href="/category/{{$randomBlog[2]->category->slug}}">{{$randomBlog[2]->category->category}}</a></p>
                             <p class="blog-readingTime"><i class="far fa-clock px-1"></i>{{$randomBlog[2]->reading_time}}</p>
                         </div>
                     </div>

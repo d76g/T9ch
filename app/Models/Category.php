@@ -10,7 +10,8 @@ class Category extends Model
     use HasFactory;
     protected $fillable = [
         'category',
-        'desc'
+        'desc',
+        'slug'
     ];
     public function Blogs()
     {
