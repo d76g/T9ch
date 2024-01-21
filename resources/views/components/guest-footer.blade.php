@@ -1,7 +1,7 @@
 <div class="flex justify-center items-center my-4">
     <footer class="p-4 bg-dark-blue text-Mygray rounded-lg shadow md:px-6 md:py-8 dark:bg-Mygray-900 w-11/12">
         <div class="sm:flex sm:items-center sm:justify-between">
-            <a href="/" class="flex items-center mb-4 sm:mb-0">
+            <a href="/home" class="flex items-center mb-4 sm:mb-0">
                 <img src="{{URL::asset('/image/logo-circle.png')}}" class="h-10 mr-3" alt="Flowbite Logo" />
                 <span class="self-center whitespace-nowrap dark:text-white font-jomhuria text-3xl">تقنية</span>
             </a>

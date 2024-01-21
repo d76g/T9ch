@@ -6,7 +6,15 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" type="image/png" href="{{URL::asset('image/logo.png')}}">
         <title>@yield('title')</title>
-
+        {{-- Google Analytics Code --}}
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.ga4.measurementId') }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{ config('services.ga4.measurementId') }}');
+        </script>
+        {{-- End Google Analytics Code --}}
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

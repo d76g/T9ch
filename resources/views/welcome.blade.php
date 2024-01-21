@@ -8,7 +8,7 @@
             <p class="text-xl font-playfair"> t9chnih</p>
         </div>
         <div class="px-4">
-            <p class="text-Mygray text-2xl font-jomhuria">مرحباً يا <span class="text-yellow">مبرمج</span></p>
+            <a href="/login" class="text-Mygray text-2xl font-jomhuria">مرحباً يا <span class="text-yellow">مبرمج</span></a>
         </div>
     </nav>
     <div class="relative min-w-full h-auto overflow-hidden">

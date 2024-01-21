@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@toast-ui/editor": "^3.2.2",
+        "firebase": "^10.7.2",
         "shiki": "^0.14.1",
         "sweetalert2": "^11.10.2"
     }

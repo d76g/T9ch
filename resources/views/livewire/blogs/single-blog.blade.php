@@ -6,7 +6,7 @@
         <div class="relative sm:10/12 w-8/12 bg-white max-h-max mt-24 pb-4 rounded-t-lg flex flex-col justify-center items-center font-plex">
         {{-- Title & Category --}}
                 <div class="w-4/6 h-auto md:h-2/6 flex flex-col justify-center items-center pt-14">
-                        <a href="/category/{{$blog->category->category}}" target="_blank">
+                        <a href="/category/{{$blog->category->slug}}" target="_blank">
                                 <span class="text-blue font-bold text-xl">{{$blog->category->category}}</span>
                         </a>
                         <div class="pt-3">

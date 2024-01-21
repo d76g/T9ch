@@ -118,3 +118,6 @@ code{
     direction: ltr;
     text-align: left; /* or 'start' which aligns to the beginning of the line in the given direction */
 }
+.login-background-blur {
+    filter: blur(1px);
+}
