@@ -1,7 +1,7 @@
-<div class="h-14 w-3/4 mt-5 ">
+<div class="h-14 w-3/4 mb-10 md:mb-0">
     <form action="{{$pageName}}">
         <label
-            class="mx-auto relative bg-white min-w-sm max-w-2xl flex flex-col md:flex-row items-center justify-center border
+            class="mx-auto relative bg-white min-w-sm max-w-4xl flex flex-col md:flex-row items-center justify-center border
              py-1 px-2 rounded-2xl shadow-sm border-gray-200"
             for="search-bar">
 
@@ -18,7 +18,7 @@
                 </div>
             </button>
         </label>
-        <div class="pl-20">
+        <div class="xl:pl-20">
             @error('search') <span class="text-red text-xs font-bold "> - {{ $message }}</span> @enderror
         </div>
     </form>

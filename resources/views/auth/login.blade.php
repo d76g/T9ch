@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="relative h-screen w-full">
+    <div class="relative h-screen w-screen">
     <div class="absolute inset-0 sm:h-screen sm:w-full md:bg-cover bg-center bg-no-repeat login-background-blur"
      style="background-image: url({{URL::asset('/image/login-background-3.png')}})"></div>
     <div class="absolute w-full h-screen flex flex-col justify-center items-center z-20">

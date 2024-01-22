@@ -1,4 +1,4 @@
-
+@section('title'){{'Home'}}@endsection
 <div class="mb-12 lg:mt-12">
     <div class="relative bg-Mygray w-auto sm:w-full h-full flex flex-col items-center mb-6">
         <div class="flex mb-6">

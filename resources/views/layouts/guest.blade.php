@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" type="image/png" href="{{URL::asset('image/logo.png')}}">
-        <title>@yield('title')</title>
+        <title>@yield('title') - t9chnih</title>
         {{-- Google Analytics Code --}}
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.ga4.measurementId') }}"></script>
         <script>
@@ -28,7 +28,7 @@
         @livewireStyles
     </head>
     <body class="bg-Mygray antialiased">
-        <div class="w-full min-h-screen">
+        <div class="w-full min-h-screen max-w-6xl">
             {{ $slot }}
         </div>
         @stack('modals')

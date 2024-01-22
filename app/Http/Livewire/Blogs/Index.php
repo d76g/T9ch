@@ -12,8 +12,10 @@ class Index extends Component
 
     public $search = "";
     public $pageName = '/blogs';
+    protected $blogsToLoad = 7;
     protected $listeners = [
         'searchUpdated' => 'updateSearch',
+        'loadMore'
     ];
     public function mount()
     {
@@ -26,13 +28,18 @@ class Index extends Component
         $this->search = $searchTerm;
         logger($this->search);
     }
+    public function loadMore()
+    {
+        $this->blogsToLoad += 10; // Adjust based on how many more blogs you want to load each time
+        logger('load more');
+    }
     public function render()
     {
         $result = [];
         if(strlen($this->search) >= 2){
-            $result = Blog::where('title', 'like', '%'.$this->search.'%')->paginate(4);
+            $result = Blog::where('title', 'like', '%'.$this->search.'%')->latest()->get();
         }else{
-            $result = Blog::latest()->paginate(4);
+            $result = Blog::latest()->paginate($this->blogsToLoad);
         }
         return view('livewire.blogs.index', [
             'blogs' => $result,

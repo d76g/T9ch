@@ -143,6 +143,11 @@
               @endif
             </div>
             </div>
+            <div class="h-auto my-3 lg:mt-5 w-full">
+                <div class="md:px-32 lg:px-8 xl:px-24">
+                    {{ $blog->links() }}
+            </div>
+            </div>
 </div>
 
 

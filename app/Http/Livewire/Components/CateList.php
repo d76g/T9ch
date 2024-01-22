@@ -17,7 +17,7 @@ class CateList extends Component
         ->get();
         // Limiting the number of blogs for each category
         $categories->each(function ($category) {
-            $category->blogs = $category->blogs->take(3);
+            $category->blogs = $category->blogs->take(2);
         });
         return view('livewire.components.cate-list',
         ['categories' => $categories]

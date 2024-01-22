@@ -11,7 +11,7 @@
             <a href="/login" class="text-Mygray text-2xl font-jomhuria">مرحباً يا <span class="text-yellow">مبرمج</span></a>
         </div>
     </nav>
-    <div class="relative min-w-full h-auto overflow-hidden">
+    <div class="relative min-w-full h-auto overflow-hidden w-screen">
         {{-- Main Content --}}
         <div class="h-50vh lg:h-90vh w-full sm:w-full flex items-center justify-center m-auto bg-dark-blue">
             <div class="lg:w-2/5 flex justify-center items-center text-Mygray font-jomhuria  flex-col">
