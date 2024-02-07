@@ -10,14 +10,14 @@
    
     <div class="w-full">
         <div x-data="{show: false}" class="flex flex-col justify-center items-center w-full text-right overflow-y-auto max-h-full">
-            <div class="flex flex-row  bg-blue text-white py-1 px-2 rounded-md justify-end items-end">
+            <div class="flex flex-row  bg-MyBlue text-white py-1 px-2 rounded-md justify-end items-end">
                 <button @click="show = ! show">New Blog</button>
             </div>
             <div x-cloak x-show="show" x-transition class="w-11/12 h-full md:w-5/6 flex flex-col justify-center bg-slate-50 rounded-md my-4 py-4 px-6 drop-shadow-lg ">
                 <div class="flex justify-between items-end border-b w-full">
                     <div class="py-2">
                         <button 
-                        wire:click="BlogAdded" class="text-white bg-blue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Post</button>
+                        wire:click="BlogAdded" class="text-white bg-MyBlue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Post</button>
                     </div>
                     <p class=" py-1 mb-3 font-plex text-right">مدونة جديدة</p>
 
@@ -118,14 +118,14 @@
                        <tr class=" border-b  {{$data->deleted_at == null ? 'bg-white text-dark-blue' : 'bg-slate-50'}}">
                           <td class="py-4 px-6" wire:key="data-{{ $data->id }}">{{$data->id}}</td>
                           <td class="py-4 px-6" wire:key="data-{{ $data->id }}">
-                                <a class="dark:hover:text-blue" href="/blog/{{$data->slug}}">{{$data->title}}</a>
+                                <a class="dark:hover:text-MyBlue" href="/blog/{{$data->slug}}">{{$data->title}}</a>
                           </td>                          
                           <td class="py-4 px-6" wire:key="data-{{ $data->id }}" >{{$data->reading_time}}</td>
                           <td class="py-4 px-6" wire:key="data-{{ $data->id }}" >{{$data->category->category}}</td>
                             <td class="py-4 px-6" wire:key="data-{{ $data->id }}" >
                                     <div class="flex justify-center items-center gap-2">
                                         @if ($data->deleted_at == null)
-                                            <a href="/blog/{{$data->slug}}" class="text-blue-500 hover:text-blue-800 dark:hover:text-blue-300"><i class="fa fa-eye"></i></a>
+                                            <a href="/blog/{{$data->slug}}" class="text-MyBlue-500 hover:text-MyBlue-800 dark:hover:text-MyBlue-300"><i class="fa fa-eye"></i></a>
                                             <a href="{{ route('editBlog', ['id' => $data->id]) }}" class="text-green-500 hover:text-green-800 dark:hover:text-green-300"><i class="fa fa-edit"></i></a>
                                         @else
                                             <a wire:click="restoreBlog({{$data->id}})" href="" class="text-dark-blue text-xs">restore</a>

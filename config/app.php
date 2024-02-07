@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ar',
 
     /*
     |--------------------------------------------------------------------------
@@ -120,6 +120,11 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
+    'languages' => [
+        'en' => 'English',
+        'ar' => 'Arabic',
+        'nl' => 'Dutch',
+    ],
 
     'key' => env('APP_KEY'),
 

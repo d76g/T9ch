@@ -158,8 +158,6 @@ class BlogCategory extends Component
             ]);
             $this->editedCategoryIndex = null;
             $this->editedHashtagIndex = null;
-        
-        
     }
     public function cancel()
     {
@@ -168,7 +166,6 @@ class BlogCategory extends Component
     }
     public function destroy($id, $name)
     {
-        logger($name);
         try{
             if($name == 'Category'){
                 Category::find($id)->delete();

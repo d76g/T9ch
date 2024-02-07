@@ -5,8 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                    <a href="{{ route('home') }}">
+                        <img src="{{URL::asset('/image/logo-circle.png')}}" class="h-10 mr-3" alt="Logo" />
                     </a>
                 </div>
 
@@ -21,7 +21,67 @@
                     <x-jet-nav-link href="{{ route('adminBlogs') }}" :active="request()->routeIs('adminBlogs')">
                         {{ __('Blogs') }}
                     </x-jet-nav-link>
+                
+                    <!-- Dropdown Container -->
+                    <div class="relative flex justify-center" x-data="{ open: false }">
+                        <!-- Main Link -->
+                        <button @click="open = !open" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                            @php
+                                $currentRoute = Route::currentRouteName();
+                                $buttonText = '';
+                                switch ($currentRoute) {
+                                    case 'myProfile':
+                                        $buttonText = __('Profile');
+                                        break;
+                                    case 'myWorkExperience':
+                                        $buttonText = __('Work Experience');
+                                        break;
+                                    case 'myAchievements':
+                                        $buttonText = __('Achievements');
+                                        break;
+                                    case 'mySkills':
+                                        $buttonText = __('Skills');
+                                        break;
+                                    case 'myCourses':
+                                        $buttonText = __('Courses');
+                                        break;
+                                    default:
+                                        $buttonText = __('About Me');
+                                        $currentRoute = '';
+                                        break;
+                                }
+                            @endphp
+                                
+                                <span class="flex flex-col">
+                                    {{ $buttonText }}
+                                    <span class="{{request()->routeIs($currentRoute) ? 'w-full h-1 bg-sky-400 rounded-full' : ''}}"></span>
+                                </span>
+                                
+                           
+                        </button>
+                
+                        <!-- Dropdown Menu -->
+                        <div x-transition x-show="open" @click.away="open = false" class="flex gap-2  flex-col absolute top-16 left-0 z-50 mt-2 w-48 rounded-md shadow-lg py-2 px-3 bg-white ring-1 ring-black ring-opacity-5" style="display: none;">
+                            <x-jet-nav-link class="w-32 pb-2 hover:translate-x-2" href="{{ route('myProfile') }}" :active="request()->routeIs('myProfile')">
+                                {{ __('Profile') }}
+                            </x-jet-nav-link>
+                            <x-jet-nav-link class="w-32 pb-2 hover:translate-x-2" href="{{ route('myWorkExperience') }}" :active="request()->routeIs('myWorkExperience')">
+                                {{ __('Work Experience') }}
+                            </x-jet-nav-link>
+                            <x-jet-nav-link class="w-32 pb-2 hover:translate-x-2" href="{{ route('myAchievements') }}" :active="request()->routeIs('myAchievements')">
+                                {{ __('Achievements') }}
+                            </x-jet-nav-link>
+                            <x-jet-nav-link class="w-32 pb-2 hover:translate-x-2" href="{{ route('mySkills') }}" :active="request()->routeIs('mySkills')">
+                                {{ __('Skills') }}
+                            </x-jet-nav-link>
+                            <x-jet-nav-link class="w-32 pb-2 hover:translate-x-2" href="{{ route('myCourses') }}" :active="request()->routeIs('myCourses')">
+                                {{ __('Courses') }}
+                            </x-jet-nav-link>
+                            <!-- Add more dropdown links here -->
+                        </div>
+                    </div>
                 </div>
+                
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

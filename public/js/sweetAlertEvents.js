@@ -9,6 +9,7 @@ window.addEventListener('store', function(event){
     position:'top-end',
     showConfirmButton:false,
 });
+  
 })
   window.addEventListener('deleted', function(event){
     Swal.fire({
@@ -32,7 +33,7 @@ window.addEventListener('store', function(event){
     toast:true,
     position:'top-end',
     showConfirmButton:false,
-});
+  });
 })
   window.addEventListener('error', function(event){
     Swal.fire({

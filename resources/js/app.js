@@ -23,16 +23,22 @@ const firebaseConfig = {
   appId: "1:914780328481:web:e52ba08ae329db648cc960",
   measurementId: "G-B5Q3E5F570"
 };
-
+Livewire.on('localeChanged', () => {
+  console.log('locale changed');
+      window.location.reload(); // Simple page refresh
+});
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const analytics = getAnalytics(firebaseApp);
-const editor = new Editor ({
-	el: document.querySelector('#editor'),
-	height: '400px',
-  initialEditType: 'markdown',
-  placeholder: 'اكتب شيئًا مفيدًا',
-});
+const editorElement = document.querySelector('#editor');
+if(editorElement) {
+  const editor = new Editor ({
+    el: document.querySelector('#editor'),
+    height: '400px',
+    initialEditType: 'markdown',
+    placeholder: 'اكتب شيئًا مفيدًا',
+  });
+}
 Livewire.on('getContent', () => {
   const content = editor.getMarkdown();
   document.querySelector('#content').value = content;
@@ -49,4 +55,5 @@ Livewire.on('setBlogContent', $blogContent => {
     editor.setMarkdown($blogContent); 
     document.querySelector('#editContent').value = $blogContent;
 });
+
 

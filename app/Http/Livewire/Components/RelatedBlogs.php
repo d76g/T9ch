@@ -27,7 +27,7 @@ class RelatedBlogs extends Component
             });
 
             // Take up to 3 blogs from the filtered list
-            $hashtag->blogs = $filteredBlogs->take(1);
+            $hashtag->blogs = $filteredBlogs->take(4);
 
             // Update the list of selected blog IDs
             $selectedBlogIds = $selectedBlogIds->merge($hashtag->blogs->pluck('id'));

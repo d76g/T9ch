@@ -3,7 +3,7 @@
     <div class="relative bg-Mygray w-auto sm:w-full h-full flex flex-col items-center mb-6">
         <div class="flex mb-6">
             <div class="flex flex-col">
-                <h1 class="text-4xl md:text-7xl">مُـدونات</h1>
+                <h1 class="text-4xl md:text-7xl">{{__('Blogs')}}</h1>
             </div>
         </div>
         @if ($blogs->count() >= 4)
@@ -13,14 +13,14 @@
                 <div class="px-1 w-full h-14 sm:h-20 md:h-22 lg:h-32 grid grid-cols-2 gap-2 rounded-xl text-Mygray">
                     @if ($randomCategory != null)
                         <div class="bg-dark-blue rounded-xl flex justify-center items-center "><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/category/{{$randomCategory[0]->slug}}">{{$randomCategory[0]->category}}</a></h1></div>
-                        <div class="bg-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/category/{{$randomCategory[1]->slug}}">{{$randomCategory[1]->category}}</a></h1></div>
+                        <div class="bg-MyBlue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/category/{{$randomCategory[1]->slug}}">{{$randomCategory[1]->category}}</a></h1></div>
                     @endif
                 </div>
                 <div class="grid gap-2">
                 @foreach ($latestTwoBlogs as $blog)        
-                <div class="px-1 w-full h-40 sm:h-44 md:h-48 lg:h-52 bg-blue rounded-xl text-Mygray font-jomhuria {{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">
+                <div class="px-1 w-full h-40 sm:h-44 md:h-48 lg:h-52 bg-MyBlue rounded-xl text-Mygray font-jomhuria {{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">
                     <div class="p-4 flex flex-col">
-                        <a href="/blog/{{$blog->slug}}"><span class="h-20 sm:h-22 md:h-24 lg:h-28 text-3xl sm:text-4xl md:text-5xl lg:text-4xl hover:underline hover:cursor-pointer hover:text-yellow transition ease">{{$blog->title}}</span></a>
+                        <a href="/blog/{{$blog->slug}}"><span class="h-20 sm:h-22 md:h-24 lg:h-28 text-3xl sm:text-4xl md:text-5xl lg:text-4xl hover:underline hover:cursor-pointer hover:text-MyYellow transition ease">{{$blog->title}}</span></a>
                         <div class="flex justify-between w-auto font-plex items-center">
                             <span class="text-Mygray text-sm text-left font-plex px-1">
                                 @php
@@ -51,9 +51,9 @@
             {{-- End --}}
             {{-- Middle --}}
             <div class="flex flex-col w-96  sm:w-auto h-full lg:h-70vh gap-1 sm:gap-3 px-3  my-1"> 
-                <div class="px-1 w-full h-40 sm:h-44 md:h-48 lg:h-52 bg-blue rounded-xl text-Mygray font-jomhuria {{$randomBlog[0]->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">
+                <div class="px-1 w-full h-40 sm:h-44 md:h-48 lg:h-52 bg-MyBlue rounded-xl text-Mygray font-jomhuria {{$randomBlog[0]->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">
                     <div class="p-4 flex flex-col">
-                        <a href="/blog/{{$randomBlog[0]->slug}}"><span class="h-20 sm:h-22 md:h-24 lg:h-28 text-3xl sm:text-4xl md:text-5xl lg:text-4xl hover:underline hover:cursor-pointer hover:text-yellow transition ease">{{$randomBlog[0]->title}}</span></a>
+                        <a href="/blog/{{$randomBlog[0]->slug}}"><span class="h-20 sm:h-22 md:h-24 lg:h-28 text-3xl sm:text-4xl md:text-5xl lg:text-4xl hover:underline hover:cursor-pointer hover:text-MyYellow transition ease">{{$randomBlog[0]->title}}</span></a>
                         <span class="text-Mygray text-sm text-left font-plex px-1">
                             @php
                                 $created_at = $randomBlog[0]->created_at;
@@ -76,7 +76,7 @@
                 </div>
                 <div class="px-1 w-full h-40 sm:h-44 md:h-48 lg:h-52 bg-dark-blue rounded-xl text-Mygray font-jomhuria {{$randomBlog[1]->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">
                     <div class="p-4 flex flex-col">
-                        <a href="/blog/{{$randomBlog[1]->slug}}"><span class="h-20 sm:h-22 md:h-24 lg:h-32 text-3xl sm:text-4xl md:text-5xl lg:text-4xl hover:underline hover:cursor-pointer hover:text-yellow transition ease">{{$randomBlog[1]->title}}</span></a>
+                        <a href="/blog/{{$randomBlog[1]->slug}}"><span class="h-20 sm:h-22 md:h-24 lg:h-32 text-3xl sm:text-4xl md:text-5xl lg:text-4xl hover:underline hover:cursor-pointer hover:text-MyYellow transition ease">{{$randomBlog[1]->title}}</span></a>
                         <span class="text-Mygray text-sm text-left font-plex px-1">
                             @php
                                 $created_at = $randomBlog[1]->created_at;
@@ -98,21 +98,21 @@
                     </div>
                 </div>
                 <div class="px-1 w-full h-14 sm:h-20 md:h-24 lg:h-32 grid grid-cols-2 gap-2 rounded-xl text-Mygray">
-                    <div class="bg-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[0]->name}}">{{$randomHashtag[0]->name}}</a></h1></div>
-                    <div class="bg-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[1]->name}}">{{$randomHashtag[1]->name}}</a></h1></div>
+                    <div class="bg-MyBlue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[0]->name}}">{{$randomHashtag[0]->name}}</a></h1></div>
+                    <div class="bg-MyBlue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[1]->name}}">{{$randomHashtag[1]->name}}</a></h1></div>
                 </div>
             </div>
             {{-- End --}}
             {{-- Right --}}
             <div class="flex flex-col w-96  sm:w-auto h-full lg:h-70vh gap-1 sm:gap-3 px-3  my-1"> 
                 <div class="px-1 w-full h-14 sm:h-20 md:h-24 lg:h-32 grid grid-cols-2 gap-2 rounded-xl text-Mygray">
-                        <div class="bg-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[2]->name}}">{{$randomHashtag[2]->name}}</a></h1></div>
+                        <div class="bg-MyBlue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[2]->name}}">{{$randomHashtag[2]->name}}</a></h1></div>
                         <div class="bg-dark-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[3]->name}}">{{$randomHashtag[3]->name}}</a></h1></div>
                 </div>
                 <div class="grid gap-2">
                 <div class="px-1 w-full h-40 sm:h-44 md:h-48 lg:h-52 bg-dark-blue rounded-xl text-Mygray font-jomhuria {{$randomBlog[2]->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">
                     <div class="p-4 flex flex-col">
-                        <a href="/blog/{{$randomBlog[2]->slug}}"> <span class="h-20 sm:h-22 md:h-24 lg:h-32 text-3xl sm:text-4xl md:text-5xl lg:text-4xl hover:underline hover:cursor-pointer hover:text-yellow transition ease">{{$randomBlog[2]->title}}</span></a>
+                        <a href="/blog/{{$randomBlog[2]->slug}}"> <span class="h-20 sm:h-22 md:h-24 lg:h-32 text-3xl sm:text-4xl md:text-5xl lg:text-4xl hover:underline hover:cursor-pointer hover:text-MyYellow transition ease">{{$randomBlog[2]->title}}</span></a>
                         <span class="text-Mygray text-sm text-left font-plex px-1">
                             @php
                                 $created_at = $randomBlog[2]->created_at;
@@ -136,14 +136,14 @@
                 </div>
                 <div class="px-1 w-full h-14 sm:h-20 md:h-24 lg:h-52 grid grid-cols-2 gap-2 rounded-xl text-Mygray">
                     <div class="bg-dark-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[4]->name}}">{{$randomHashtag[4]->name}}</a></h1></div>
-                    <div class="bg-blue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[5]->name}}">{{$randomHashtag[5]->name}}</a></h1></div>
+                    <div class="bg-MyBlue rounded-xl flex justify-center items-center"><h1 class="text-3xl sm:text-5xl lg:text-3xl font-jomhuria"><a href="/hashtag/{{$randomHashtag[5]->name}}">{{$randomHashtag[5]->name}}</a></h1></div>
                 </div>
             </div>     
             {{-- End --}}
         </div>
         @endif
-        <div class="flex justify-center items-center text-3xl font-jomhuria">
-            <a href="/blogs" class="hover:text-blue hover:underline transition ease-in-out  hover:scale-110">View all blogs</a>
+        <div class="flex justify-center items-center text-xl font-playfair bg-MyBlue mt-2 rounded-lg hover:bg-slate-300">
+            <a href="/blogs" class="text-white hover:text-dark-blue hover:underline transition ease-in-out hover:scale-105 px-3 py-1">{{__('View All')}}</a>
         </div>
         
     </div>

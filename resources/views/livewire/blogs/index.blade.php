@@ -1,10 +1,11 @@
-@section('title'){{'Blogs'}}@endsection
-<div  class="h-full w-screen lg:pb-6 flex flex-col justify-center items-center bg-white">
+@section('title'){{'Home'}}@endsection
+<div  class=" bg-white relative h-full max-h-max w-screen lg:pb-6 flex flex-col justify-center items-center">
 <div class="relative w-screen h-14">
     <x-navbar/>
 </div>
+<div class="w-11/12 flex flex-col items-center rounded-b-2xl">
 <div class="relative w-full h-20 font-jomhuria text-center mt-10">
-    <h1 class="hover:text-blue w-auto text-5xl md:text-7xl">مُــــــدونــــــات</h1>
+    <h1 class="hover:text-MyBlue w-auto text-5xl md:text-7xl">{{__('Blogs')}}</h1>
  </div>
  <div class="flex justify-center items-center w-full">
     <livewire:components.search-bar :search="$search" :pageName="$pageName" />
@@ -12,19 +13,19 @@
 @if(sizeof($blogs) == 0 && $search == '')
 <div class="w-full h-full flex flex-col justify-center items-center">
     <img src="{{URL::asset('/image/empty.svg')}}" alt="empty-box" class="max-h-96 min-h-60 my-10">
-    <p class="text-5xl font-plex text-slate-300 ">No blogs found</p>
+    <p class="text-5xl font-plex text-slate-300 ">{{__('No results found')}}</p>
 </div>
 @else 
-<div class="flex flex-col lg:flex-row w-full h-auto mt-5 px-8 lg:px-10">
+<div class="relative flex flex-col lg:flex-row w-full h-auto mt-5 px-8 lg:px-10">
     {{-- Row 1 --}}
-    <div class="">
+    <div class="hidden lg:block">
         <div class="flex flex-col">
-            <h2 class="font-plex text-md">Categories</h2>
+            <h2 class="font-plex text-md">{{__('Categories')}}</h2>
             @livewire('components.cate-list')
         </div>
     </div>
     {{-- Row 2 --}}
-    <div  class="w-full order-first lg:order-none">
+    <div  class="relative w-full order-first lg:order-none">
         
         <div>
             @if(sizeof($blogs) == 0 && $search != '')
@@ -35,67 +36,48 @@
                 </div>
             @else
             <div class="lg:pl-5 lg:w-11/12 max-w-3xl">
-                <h2 class="lg:w-11/12 font-plex">Recent Blogs {{$blogs->count()}}</h2>
+                <h2 class="lg:w-11/12 font-plex">{{__('Blogs')}} ({{$blogs->count()}})</h2>
             </div>
             @foreach ($blogs as $blog)
-            <div class="flex flex-col justify-center items-center mb-1.5">
-            <div class="w-full lg:w-11/12 h-56 max-h-56 max-w-3xl rounded-lg bg-Mygray">
-                <div class="flex flex-col text-right h-28 max-h-28 justify-center {{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}} mt-5">
-                    <a href="/blog/{{$blog->slug}}" class="hover:text-blue px-7 text-ellipsis font-space text-md sm:text-xl lg:text-2xl">{{$blog->title}}</a>
-                </div>
-                    <div class="flex flex-row justify-start items-center  px-5 mb-2 h-[16px] sm:h-[20px] lg:h-[22px] text-sm sm:text-lg">
-                        @foreach ($blog->hashtags as $hashtag)
-                        <a href="/hashtag/{{$hashtag->name}}" class="font-bold py-1 px-2 hover:bg-yellow rounded-lg"><span class="text-blue">#</span> {{ $hashtag->name }}</a>
-                        @endforeach
-                    </div>
-                    <div class="flex flex-wrap sm:flex-nowrap justify-center sm:justify-between items-center font-plex px-1 h-16 max-h-16 text-xs pb-2 w-full">
-                        <span class="text-slate-500 text-left font-plex flex justify-center md:justify-end sm:px-7 w-2/4 sm:w-auto">
-                            @php
-                                $created_at = $blog->created_at;
-                                $current_date = now();
-                                // Check if the post is more than a year old
-                                if ($created_at->format('Y') < $current_date->format('Y')) {
-                                    // Post is more than a year old
-                                    echo $created_at->format('d M Y');
-                                } else {
-                                    // Post is less than a year old
-                                    echo $created_at->format('d M');
-                                }
-                            @endphp
-                        </span>
-                        <div class="w-2/4 sm:w-auto">
-                            <a href="/category/{{$blog->category->slug}}" class="border border-gray-400 px-3 text-center rounded-2xl  py-1 hover:bg-dark-blue hover:text-Mygray">{{$blog->category->category}}</a>
-                        </div>
-                        <span class="flex flex-col text-slate-500 sm:pr-5">
-                            <span class="{{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">
-                                <i class="far fa-clock px-0.5 "></i>
-                                <span>{{$blog->reading_time}}</span>
-                                <span>{{$blog->language->language == 'Arabic' ? 'قراءة' : 'reading time'}}</span>
-                                
-                            </span>
-                        </span>
-                    </div>
-                    
-            </div>
-            
-            </div>
+                <livewire:components.blog-container :blog="$blog" :key="$blog->id" :bgColor="'bg-Mygray'"/>
             @endforeach 
             @endif
-            {{-- <div class="h-auto my-3 lg:mt-5 w-full">
-                <div class="md:px-32 lg:px-8 xl:px-24">
-                    {{ $blogs->links() }}
-            </div>
-            </div> --}}
         </div>
     </div>
     {{-- Row 3 --}}
-    <div>
+    <div class="hidden lg:block">
         <div class="flex flex-col">
-            <h2 class="font-plex" >Hashtags</h2>
+            <h2 class="font-plex" >{{__('Hashtags')}}</h2>
             @livewire('components.related-blogs')
         </div>
     </div>
 </div>
+
 @endif
-    <button wire:click="$emit('loadMore')" x-show="!loading">Load More</button>
+    @if ($moreBlogsAvailable)
+        {{-- <button wire:click="$emit('loadMore')" x-show="!loading"
+         class="bg-Mygray px-2 py-1 rounded-full text-sm font-plex mt-3 hover:bg-slate-200">Load More</button> --}}
+         <div x-data="{ loading: false }" 
+         x-on:scroll.window="if(window.innerHeight + window.scrollY >= document.body.offsetHeight) { loading = true; $wire.emit('loadMore'); }" 
+         x-show="loading"
+         class="bg-Mygray px-2 py-1 text-sm font-plex mt-3 mb-5 rounded-md flex">
+        {{__('Loading more posts...')}}
+    </div>
+    @else
+        <div class="bg-Mygray px-2 py-1 text-sm font-plex mt-3 mb-5 rounded-md flex">
+            <x-eos-check-circle  class="w-4 h-4 mr-2 text-MyBlue "/>
+            {{__('All blogs have been loaded.')}}    
+        </div>
+    @endif
+    <div
+    class="fixed bottom-0 right-2 mb-4 "
+     x-data="{ scrolled: false }"
+     x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 200; })">
+    <button x-show="scrolled" @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+            style="display: none;" 
+            class="mr-4 z-10 bg-dark-blue px-4 py-2 rounded-full shadow-md transition text-white font-space hover:bg-cyan-800" >
+            <x-eos-arrow-upward class="text-white w-5 h-5 hover:-translate-y-1 ease-in-out"/>
+    </button>
+    </div>
+</div>
 </div>

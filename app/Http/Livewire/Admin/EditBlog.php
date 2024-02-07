@@ -100,8 +100,7 @@ class EditBlog extends Component
         $this->content = $content;
         // logger($content);
         $id = $this->blog->id;
-        $validatedData = $this->validate();
-        logger($validatedData);
+        $this->validate();
         try {
             if ($this->blogPhoto) {
                 $imageName = time() . '.' . $this->blogPhoto->extension();

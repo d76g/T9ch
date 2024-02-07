@@ -12,7 +12,7 @@ class Index extends Component
 
     public $search = "";
     public $pageName = '/blogs';
-    protected $blogsToLoad = 7;
+    public $blogsToLoad = 11;
     protected $listeners = [
         'searchUpdated' => 'updateSearch',
         'loadMore'
@@ -30,19 +30,27 @@ class Index extends Component
     }
     public function loadMore()
     {
-        $this->blogsToLoad += 10; // Adjust based on how many more blogs you want to load each time
-        logger('load more');
+        if ($this->blogsToLoad < $this->totalBlogsCount) {
+        $this->blogsToLoad += 10;
+        }
     }
+
     public function render()
     {
-        $result = [];
-        if(strlen($this->search) >= 2){
-            $result = Blog::where('title', 'like', '%'.$this->search.'%')->latest()->get();
-        }else{
-            $result = Blog::latest()->paginate($this->blogsToLoad);
+        // Initially set totalBlogsCount if not set
+        if (!isset($this->totalBlogsCount)) {
+            $this->totalBlogsCount = Blog::count();
         }
+
+        $blogs = Blog::latest()->paginate($this->blogsToLoad);
+        
+        // Determine if there are more blogs to load
+        $moreBlogsAvailable = $this->blogsToLoad < $this->totalBlogsCount;
+
         return view('livewire.blogs.index', [
-            'blogs' => $result,
+            'blogs' => $blogs,
+            'moreBlogsAvailable' => $moreBlogsAvailable,
         ])->layout('layouts.guest');
     }
+
 }

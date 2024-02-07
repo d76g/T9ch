@@ -7,14 +7,14 @@
         {{-- Title & Category --}}
                 <div class="w-5/6 lg:w-4/6 h-auto md:h-2/6 flex flex-col justify-center items-center pt-14">
                         <a href="/category/{{$blog->category->slug}}" target="_blank">
-                                <span class="text-blue font-bold text-md md:text-xl xl:text-2xl">/ {{$blog->category->category}}</span>
+                                <span class="text-MyBlue font-bold text-md md:text-xl xl:text-2xl">/ {{$blog->category->category}}</span>
                         </a>
                         <div class="pt-3">
                                 <h1 class="text-md md:text-xl lg:text-2xl text-center font-space">{{$blog->title}}</h1>
                         </div>
                         <div class="w-full flex flex-row justify-center xl:mt-2">
                                 @foreach ($blog->hashtags as $hashtag)
-                                <a href="/hashtag/{{$hashtag->name}}" class="font-bold text-sm lg:text-lg py-1 px-2 hover:bg-yellow rounded-lg"><span class="text-blue">#</span> {{ $hashtag->name }}</a>
+                                <a href="/hashtag/{{$hashtag->name}}" class="font-bold text-sm lg:text-lg py-1 px-2 hover:bg-MyYellow rounded-lg"><span class="text-MyBlue">#</span> {{ $hashtag->name }}</a>
                                 @endforeach
                         </div>
                 </div>
