@@ -67,7 +67,7 @@ class SingleCategory extends Component
            })
            ->whereHas('category', function ($query) {
                $query->where('slug', $this->category->slug);
-           })->paginate(4);
+           })->paginate(10);
        }
         return view('livewire.blogs.single-category',[
             'blogs' => $result,

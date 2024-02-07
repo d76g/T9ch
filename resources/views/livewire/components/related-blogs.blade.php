@@ -1,15 +1,14 @@
-<div class="w-full h-screen mt-20 font-plex">
+<div class="w-full lg:h-screen font-plex ">
     @foreach ($hashtags as $hashtag)
-    <div class="bg-Mygray p-5 rounded-md w-[350px] m-3 h-auto flex flex-col justify-center items-start">
+    <div class="bg-Mygray p-5 rounded-md lg:w-[250px] divide-y-2 gap-y-2 mb-2 h-auto flex flex-col justify-center items-start">
         <div>
-            <a href="/hashtag/{{$hashtag->name}}"><p class="text-2xl hover:text-red"># {{$hashtag->name}}</p></a>
+            <a href="/hashtag/{{$hashtag->name}}"><p class="text-2xl lg:text-xl hover:text-red font-semibold"><span class="text-MyBlue"># </span>{{$hashtag->name}}</p></a>
             <p class="text-sm py-1">{{$hashtag->description}}</p>
         </div>
-        <hr class="w-[320px] h-1">
         @foreach ($hashtag->blogs as $blog)
 
-        <div class="my-2">    
-            <a href="/blog/{{$blog->slug}}" class="hover:text-blue"><p class="text-xl {{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">{{$blog->title}}</p></a>
+        <div class="mb-2 w-full pt-4">    
+            <a href="/blog/{{$blog->slug}}" class="hover:text-MyBlue"><p class="text-md md:text-xl lg:text-lg {{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">{{$blog->title}}</p></a>
             <p class="text-sm font-bold text-zinc-400">
                 @php
                     $created_at = $blog->created_at;
@@ -24,7 +23,6 @@
                     }
                 @endphp
             </p>
-            <hr class="w-[320px] h-1">
         </div>
         @endforeach
     </div>

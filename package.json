@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "dev": "vite",
+        "dev": "vite & php artisan serve --port=8080",
         "build": "vite build"
     },
     "devDependencies": {

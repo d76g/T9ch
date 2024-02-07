@@ -8,14 +8,14 @@
         </div>
         <div class="flex justify-start">
             <ul class="flex">
-                <a  @click.prevent="activeTab = 'category'" :class="{'border-sky-400 border-b-4 scale-110': activeTab === 'category'}" href="#" class="cursor-pointer bg-zinc-50 px-4 py-1 rounded-md hover:bg-slate-100 h-10 mx-2 justify-center align-middle  drop-shadow-sm transition ease-in-out delay-150 bg-blue-500 hover:translate-y-1 hover:scale-110 duration-300">Categories</a>
-                <a  @click.prevent="activeTab = 'hashtag'" href="#" :class="{'border-sky-400 border-b-4': activeTab === 'hashtag'}" class="cursor-pointer bg-zinc-50 px-4 py-1 rounded-md hover:bg-slate-100 h-10 mx-2 justify-center align-middle  drop-shadow-sm transition ease-in-out delay-150 bg-blue-500 hover:translate-y-1 hover:scale-110 duration-300">Tags</a>
+                <a  @click.prevent="activeTab = 'category'" :class="{'border-sky-400 border-b-4 scale-110': activeTab === 'category'}" href="#" class="cursor-pointer bg-zinc-50 px-4 py-1 rounded-md hover:bg-slate-100 h-10 mx-2 justify-center align-middle  drop-shadow-sm transition ease-in-out delay-150  hover:translate-y-1 hover:scale-110 duration-300">Categories</a>
+                <a  @click.prevent="activeTab = 'hashtag'" href="#" :class="{'border-sky-400 border-b-4': activeTab === 'hashtag'}" class="cursor-pointer bg-zinc-50 px-4 py-1 rounded-md hover:bg-slate-100 h-10 mx-2 justify-center align-middle  drop-shadow-sm transition ease-in-out delay-150  hover:translate-y-1 hover:scale-110 duration-300">Tags</a>
             </ul>
         </div>
     </div>
     <div x-cloak x-data="{show: false}" x-show="activeTab === 'category'" class="w-full">
         <div class="md:w-[95%] flex justify-end">
-            <button @click.prevent="show = ! show" class="w-auto h-12 bg-blue text-white rounded-lg px-3 py-1">Add Category</button>
+            <button @click.prevent="show = ! show" class="w-auto h-12 bg-MyBlue text-white rounded-lg px-3 py-1">Add Category</button>
         </div>
     <div  x-cloak x-show="show" x-transition class="w-full">
         <div class="flex flex-col justify-center items-center w-full">
@@ -28,19 +28,19 @@
                     <div class="relative z-0 mb-6 w-full">
                         <input type="text"  id="category" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " wire:model="category" />
                         
-                        <label for="category" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Category</label>
+                        <label for="category" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-MyBlue-600 peer-focus:dark:text-MyBlue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Category</label>
                         @error('category') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
                     </div>
                     <div class="relative z-0 mb-6 w-full">
                         <input type="text"  id="desc" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " wire:model="desc" />
                         
-                        <label for="desc" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Description</label>
+                        <label for="desc" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-MyBlue-600 peer-focus:dark:text-MyBlue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Description</label>
                         @error('desc') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
                     </div>
                     </div>
                     
                     <button 
-                    wire:click.prevent="store" class="text-white bg-blue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    wire:click.prevent="store" class="text-white bg-MyBlue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                 </form>
             </div>
         </div>
@@ -116,7 +116,7 @@
     {{-- Hashtags Content --}}
     <div  x-cloak x-data="{show : false}" x-show="activeTab === 'hashtag'" class="w-full">
         <div class="md:w-[95%] flex justify-end">
-            <button @click.prevent="show = ! show" class="w-auto h-12 bg-blue text-white rounded-lg px-3 py-1">Add Hashtag</button>
+            <button @click.prevent="show = ! show" class="w-auto h-12 bg-MyBlue text-white rounded-lg px-3 py-1">Add Hashtag</button>
         </div>
     <div x-cloak x-show="show" x-transition.duration.500ms class="w-full">
         <div   class="flex flex-col justify-center items-center w-full">
@@ -129,19 +129,19 @@
                     <div class="relative z-0 mb-6 w-full">
                         <input type="text"  id="hashtag" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " wire:model="hashtag" />
                         
-                        <label for="hashtag" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Hashtag</label>
+                        <label for="hashtag" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-MyBlue-600 peer-focus:dark:text-MyBlue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Hashtag</label>
                         @error('hashtag') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
                     </div>
                     <div class="relative z-0 mb-6 w-full">
                         <input type="text"  id="hastagDesc" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " wire:model="hastagDesc" />
                         
-                        <label for="hastagDesc" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Description</label>
+                        <label for="hastagDesc" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-MyBlue-600 peer-focus:dark:text-MyBlue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Description</label>
                         @error('hastagDesc') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
                     </div>
                     </div>
                     
                     <button 
-                    wire:click.prevent="storeHashtag" class="text-white bg-blue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    wire:click.prevent="storeHashtag" class="text-white bg-MyBlue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                 </form>
             </div>
         </div>

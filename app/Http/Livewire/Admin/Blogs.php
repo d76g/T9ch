@@ -146,7 +146,7 @@ class Blogs extends Component
     public function render()
     {
         return view('livewire.admin.blogs', [
-            'blog' => Blog::withTrashed()->get(),
+            'blog' => Blog::withTrashed()->latest()->paginate(20),
             'categories' => Category::all(),
             'languages' => Language::all(),
             'hashtagsList' => Hashtag::all(),

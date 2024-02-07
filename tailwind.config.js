@@ -37,11 +37,13 @@ module.exports = {
             },
             colors:{
                 'dark-blue':'#191B28',
-                'blue':'#6E00FF',
-                'yellow':'#FFCF00',
+                'MyBlue':'#6E00FF',
+                'MyYellow':'#FFCF00',
                 'Mygray':'#F0F4F3',
                 'red':'#EF5141',
-                'code':'#1C2833'
+                'code':'#1C2833',
+                'homeImageContainer':'#020407',
+                'homeDarkContainer':'#0B0A0D',
             },
             height:{
                 '90vh': '90vh',
