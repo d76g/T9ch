@@ -30,15 +30,14 @@ Livewire.on('localeChanged', () => {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const analytics = getAnalytics(firebaseApp);
-const editorElement = document.querySelector('#editor');
-if(editorElement) {
+
   const editor = new Editor ({
     el: document.querySelector('#editor'),
     height: '400px',
     initialEditType: 'markdown',
     placeholder: 'اكتب شيئًا مفيدًا',
   });
-}
+
 Livewire.on('getContent', () => {
   const content = editor.getMarkdown();
   document.querySelector('#content').value = content;

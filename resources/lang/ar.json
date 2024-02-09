@@ -25,7 +25,7 @@
     "Oldest": "الأقدم",
     "Reading Time": "زمن القراءة",
     "Links": "الروابط",
-    "All Rights Reserved": ".جميع الحقوق محفوظة",
+    "All Rights Reserved": "جميع الحقوق محفوظة.",
     "Profile": "الملف الشخصي",
     "Skills": "المهارات",
     "Achievements": "الإنجازات",
@@ -36,7 +36,7 @@
     "End Date": "تاريخ الانتهاء",
     "Loading more posts...": "... جاري تحميل المزيد من المدونات",
     "All blogs have been loaded.": ".تم تحميل جميع المدونات",
-    "No blogs matched": " لم يتطابق مع أي مدونات",
+    "No blogs matched": " لم يتطابق مع أي مدونة",
     "No blogs found": "لم يتم العثور على مدونات",
     "No blogs listed": "لم يتم سرد أي مدونات",
     "Current Courses": "الدورات الحالية",
@@ -45,7 +45,15 @@
     "No Profile Found": "لم يتم العثور على ملف شخصي",
     "No Skills Found": "لم يتم العثور على مهارات",
     "No Achievements Found": "لم يتم العثور على إنجازات",
-    "Become a Blogger": "كن مدونًا الآن"
-
+    "Become a Blogger": "كن مدونًا الآن",
+    "// Get Inspired by reading": "احصل على إلهام من خلال قراءة",
+    "// Pick a Category": "اختر ",
+    "// Look for a Hashtag": "ابحث عن ",
+    "All Categories": "جميع الفئات",
+    "All Hashtags": "جميع الهاشتاجات",
+    "No Categories Found": "لم يتم العثور على فئات",
+    "No Hashtags Found": "لم يتم العثور على هاشتاجات",
+    "All Categories text": "جميع الفئات مدرجة هنا. يمكنك النقر على أي منها لرؤية المدونات المتعلقة بهذه الفئة.",
+    "All Hashtags text": "جميع الهاشتاجات مدرجة هنا. يمكنك النقر على أي منها لرؤية المدونات المتعلقة بهذا الهاشتاج."
 
 }

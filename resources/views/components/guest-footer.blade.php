@@ -1,4 +1,7 @@
-<div class="flex justify-center items-center my-4 w-screen">
+@php
+    $locale = session()->get('locale');
+@endphp
+<div class="flex justify-center items-center my-4 w-screen {{textDirection($locale)}}">
     <footer class="p-4 bg-dark-blue text-Mygray rounded-lg shadow md:px-6 md:py-8 dark:bg-Mygray-900 w-11/12">
         <div class="sm:flex sm:items-center sm:justify-between">
             <a href="/home" class="flex items-center mb-4 sm:mb-0">
@@ -7,19 +10,19 @@
             </a>
             <ul class="flex flex-wrap items-center mb-6 text-sm text-Mygray-500 sm:mb-0 dark:text-Mygray-400 font-plex">
                 <li>
-                    <a href="/about" class="mr-4 hover:underline md:mr-6 ">{{__('About Me')}}</a>
+                    <a href="/about" class="m-4 hover:underline md:m-6 ">{{__('About Me')}}</a>
                 </li>
                 <li>
-                    <a href="/blogs" class="mr-4 hover:underline md:mr-6">{{__('Blogs')}}</a>
+                    <a href="/blogs" class="m-4 hover:underline md:m-6">{{__('Blogs')}}</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:underline">{{__('Contact Me')}}</a>
+                    <a href="#" class="m-4 hover:underline md:m-6">{{__('Contact Me')}}</a>
                 </li>
             </ul>
         </div>
         <hr class="my-6 border-Mygray-200 sm:mx-auto dark:border-Mygray-700 lg:my-8" />
         <div class="sm:flex sm:items-center sm:justify-between">
-            <span class="block text-sm text-Mygray-500 sm:text-center dark:text-Mygray-400 font-playfair">© <a href="https://www.instagram.com/t9chnih/" target="_blank" class="hover:underline">t9chnih</a> - {{__('All Rights Reserved')}}
+            <span class="block text-sm text-Mygray-500 sm:text-center dark:text-Mygray-400 {{fontNameforArabic($locale, 'font-plex', 'font-playfair')}}">© <a href="/" target="_blank" class="hover:underline">t9chnih</a> - {{__('All Rights Reserved')}}
             </span>
             <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
                 <a href="https://www.instagram.com/t9dev/" target="_blank" class="text-Mygray-500 hover:text-Mygray-900 dark:hover:text-white">

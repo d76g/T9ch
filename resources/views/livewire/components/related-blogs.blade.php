@@ -1,6 +1,6 @@
 <div class="w-full lg:h-screen font-plex ">
     @foreach ($hashtags as $hashtag)
-    <div class="bg-Mygray p-5 rounded-md lg:w-[250px] divide-y-2 gap-y-2 mb-2 h-auto flex flex-col justify-center items-start">
+    <div class="bg-white p-5 rounded-md lg:w-[250px] divide-y-2 gap-y-2 mb-2 h-auto flex flex-col justify-center items-start">
         <div>
             <a href="/hashtag/{{$hashtag->name}}"><p class="text-2xl lg:text-xl hover:text-red font-semibold"><span class="text-MyBlue"># </span>{{$hashtag->name}}</p></a>
             <p class="text-sm py-1">{{$hashtag->description}}</p>

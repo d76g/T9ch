@@ -1,6 +1,6 @@
 <div class="w-full lg:h-screen font-plex">
     @foreach ($categories as $category)
-    <div class="bg-Mygray p-5 rounded-md w-full lg:w-[250px] h-auto flex flex-col justify-center items-start divide-y-2 gap-y-2 mb-2">
+    <div class="bg-white p-5 rounded-md w-full lg:w-[250px] h-auto flex flex-col justify-center items-start divide-y-2 gap-y-2 mb-2">
         <div>
             <a href="/category/{{$category->slug}}"> <p class="text-2xl lg:text-xl hover:text-red font-semibold"><span class="text-MyBlue font-bold">/</span> {{$category->category}}</p></a>
             <p class="text-sm py-1">{{$category->desc}}</p>
