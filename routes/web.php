@@ -21,6 +21,8 @@ use App\Http\Livewire\Admin\Pages\Edit\EditProfile;
 use App\Http\Livewire\Admin\Pages\Profile;
 use App\Http\Livewire\Admin\Pages\Skills;
 use App\Http\Livewire\Admin\Pages\WorkExperience;
+use App\Http\Livewire\Pages\AllCategories;
+use App\Http\Livewire\Pages\AllHashtags;
 
 // Guest Routes
 Route::get('/', function () {
@@ -30,6 +32,8 @@ Route::get('/blogs', Index::class)->name('blogs');
 Route::get('/blog/{slug}', SingleBlog::class);
 Route::get('category/{slug:slug}', SingleCategory::class);
 Route::get('hashtag/{hashtag:name}', SingleHashtag::class)->name('hashtag');
+Route::get('/all-categories', AllCategories::class)->name('allCategories');
+Route::get('/all-hashtags', AllHashtags::class)->name('allHashtags');
 Route::get('/about', AboutMe::class)->name('about');
 // Admin Routes
 Route::middleware('auth')->prefix('admin')->group(function () {

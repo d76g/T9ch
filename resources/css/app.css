@@ -9,93 +9,7 @@ h2{
     font-size: 18px;
     padding-bottom: 5px;
 }
-.code-container{
-    background-image: linear-gradient(to right bottom, #212f3d, #202d3a, #1e2b38, #1d2a35, #1c2833);
-}
-.code-cover{
-    background-image: linear-gradient(to right top, #6e00ff, #003cdb, #003fa7, #00366c, #1c2833);
-}
-.roadmap-container-1:hover > div .roadmap-number , .roadmap-container-3:hover > div .roadmap-number{
-    background-color: #191B28;
-    color: #F0F4F3;
-    transition: all .5s;
-    transition-timing-function: ease-in;
-}
-.roadmap-container-2:hover > div .roadmap-number , .roadmap-container-4:hover > div .roadmap-number{
-    background-color: #FFCF00;
-    color: #191B28;
-    transition: all .5s;
-    transition-timing-function: ease-in;
-}
-.roadmap-container-1:hover > .explore-roadmap i , .roadmap-container-3:hover > .explore-roadmap i{
-    transform: translateX(-0.75rem);
-    color: #191B28;
-    transition: all .5s;
-    transition-timing-function: ease-in-out;
-}
-.roadmap-container-1:hover > .explore-roadmap p, .roadmap-container-3:hover > .explore-roadmap p{
-    color: #191B28;
-    transition: all .5s;
-    transition-timing-function: ease-in-out;
-}
-.roadmap-container-2:hover > .explore-roadmap i , .roadmap-container-4:hover > .explore-roadmap i{
-    transform: translateX(-0.75rem);
-    color: #191B28;
-    transition: all .5s;
-    transition-timing-function: ease-in-out;
-}
-.roadmap-container-2:hover > .explore-roadmap p, .roadmap-container-4:hover > .explore-roadmap p{
-    color: #191B28;
-    transition: all .5s;
-    transition-timing-function: ease-in-out;
-}
-.roadmap-title {
-    display: inline-block;
-    position: relative;
-  }
-  
-.roadmap-title::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #FFCF00;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-}
-  
-.roadmap-container-1:hover > div .roadmap-title::after , .roadmap-container-3:hover > div .roadmap-title::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-.roadmap-container-2:hover > div .roadmap-title::after , .roadmap-container-4:hover > div .roadmap-title::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-.menu-list a:hover{
-    transform: translateX(0.5rem);
-    transition: all .5s;
-    transition-timing-function: ease-in-out;
-    padding-left: 4px;
-}
-.menu-list a::before{
-    content: '';
-    width: 5px;
-    height: 10px;
-    position: absolute;
-    margin-right: 2px;
-    transform: scaleX(0);
-    transform-origin: left right;
-    transition: transform 0.25s ease-out;
-    background-color: #FFCF00;
-}
-.menu-list a:hover::before{
-    transform: scaleX(1);
-    transition: transform 0.25s ease-out;
-}
+
 pre{
     text-align: left;
     padding: 20px 25px;
@@ -120,4 +34,90 @@ code{
 }
 .login-background-blur {
     filter: blur(1px);
+}
+@keyframes slideLeft {
+    from {
+      left: 0;
+    }
+    to {
+      left: 1.25rem; /* Equivalent to Tailwind's 'right-5' */
+    }
+  }
+  @keyframes slideTop {
+    from {
+      bottom: 0;
+    }
+    to {
+      bottom: 1.25rem; /* Equivalent to Tailwind's 'right-5' */
+    }
+  }
+  .yellow-circle {
+    animation: slideLeft 0.2s ease-in-out forwards;
+  }
+  .white-circle {
+    animation: slideTop 0.2s ease-in-out forwards;
+  }
+  .code-link:before {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom,#151c26 45%,transparent 45%,transparent 55%,#151c26 55%);
+    position: absolute;
+    left: -10px;
+    border-radius: 4px
+}
+
+.code-link:hover:before {
+    background: linear-gradient(to bottom,#328af1 45%,transparent 45%,transparent 55%,#328af1 55%)
+}
+
+@keyframes fadeCodeLinkRight {
+    0% {
+        background: 0 0
+    }
+
+    50%,to {
+        --tw-bg-opacity: 1;
+        background-color: rgb(50 138 241/var(--tw-bg-opacity));
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255/var(--tw-text-opacity))
+    }
+}
+
+@keyframes fadeCodeLinkLeft {
+    50%,to {
+        background: linear-gradient(to bottom,#328af1 45%,transparent 45%,transparent 55%,#328af1 55%)
+    }
+}
+.code-menu {
+    transition: transform 0.5s ease; /* Smooth transition for movement */
+    will-change: transform; /* Optimizes the element for transformations */
+}
+
+.code-menu.pending-hover>div:first-child .code-link:nth-child(2) {
+    animation: fadeCodeLinkRight 1.5s;
+    animation-iteration-count: 3;
+    animation-fill-mode: both;
+    animation-direction: alternate;
+    animation-delay: 1s
+}
+
+.code-menu.pending-hover>div:first-child .code-link:nth-child(2):before {
+    animation: fadeCodeLinkLeft 1.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 1s
+}
+
+
+.code-menu:after {
+    content: "";
+    display: block;
+    filter: blur(38.9px);
+    width: 277px;
+    height: 20px;
+    background: #000;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 138.5px)
 }

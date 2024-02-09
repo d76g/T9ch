@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('position');
             $table->string('company');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->string('start_date');
+            $table->string('end_date');
             $table->softDeletes();
             $table->timestamps();
         });
