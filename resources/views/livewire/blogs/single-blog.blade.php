@@ -51,7 +51,7 @@
                         </div>
                 </div>
                 <div class="w-4/5 sm:prose sm:max-w-none sm:prose-lg md:prose-lg mt-4 {{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}} ">
-                        <x-markdown theme="dracula" class="overflow-auto text-sm md:text-md lg:text-lg">
+                        <x-markdown class="overflow-auto text-sm md:text-md lg:text-lg">
                                 {!! $blog->content !!}
                         </x-markdown>
                 </div>
