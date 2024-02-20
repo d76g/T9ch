@@ -60,7 +60,12 @@ class Blogs extends Component
     }
     public function store($content)
     {
-        $this->content = $content;
+        $this->title = $content['title'];
+        $this->content = $content['content'];
+        $this->readingTime = $content['readingTime'];
+        $this->category = $content['category'];
+        $this->language = $content['language'];
+        $this->hashtags = $content['hashtags'];
         $validatedData = $this->validate();
         try {
             if ($this->blogPhoto == null) {
@@ -89,7 +94,8 @@ class Blogs extends Component
                 'iconColor' => 'green',
             ]);
             $this->resetInput();
-            session()->flash('message', 'Blog Published.');
+            $this->emit('removeLocalStorage');
+            return redirect()->to('/blog/'.$blog->slug);
         } catch (\Throwable $th) {
             dd($th);
         }

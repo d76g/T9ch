@@ -68,12 +68,15 @@
             {{__('Loading more posts...')}}
         </div>
     @else
-    @if (sizeof($blogs) != 0)
-    <div x-data="{ open: true}" x-init="setTimeuut(() => open = false)" class="bg-white px-2 py-1 text-sm font-plex mt-3 mb-5 rounded-md flex">
-        <x-eos-check-circle class="w-4 h-4 mr-2 text-MyBlue "/>
-        {{__('All blogs have been loaded.')}}    
+    @if (sizeof($blogs) >= 11)
+    <div 
+        x-init="blogsLoaded()" x-transition
+        id="blogsLoaded" class="bg-white px-2 py-1 text-sm font-plex mt-3 mb-5 rounded-md flex">
+        <x-eos-check-circle class="w-4 h-4 mr-2 text-MyBlue"/>
+        {{__('All blogs have been loaded.')}}
     </div>
-@endif
+
+    @endif
     @endif
     <div
     class="fixed bottom-0 right-2 mb-4 "
@@ -81,9 +84,22 @@
      x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 200; })">
     <button x-show="scrolled" @click="window.scrollTo({top: 0, behavior: 'smooth'})"
             style="display: none;" 
-            class="mr-4 z-10 bg-dark-blue px-4 py-2 rounded-full shadow-md transition text-white font-space hover:bg-cyan-800" >
+             class="mr-4 z-10 bg-dark-blue px-4 py-2 rounded-full shadow-md transition text-white font-space hover:bg-cyan-800" >
             <x-eos-arrow-upward class="text-white w-5 h-5 hover:-translate-y-1 ease-in-out"/>
     </button>
     </div>
 </div>
+<script>
+    function blogsLoaded() {
+        const blogsLoaded = document.getElementById('blogsLoaded');
+        if (blogsLoaded) {
+            setTimeout(() => {
+                blogsLoaded.classList.add('fade-out');
+            }, 3000);
+            setTimeout(() => {
+                blogsLoaded.classList.add('opacity-0');
+            }, 5000);
+        }
+    }    
+</script>
 </div>

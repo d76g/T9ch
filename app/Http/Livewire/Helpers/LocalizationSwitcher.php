@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 class LocalizationSwitcher extends Component
 {
     public $locale;
-
+    public $class;
     public function mount()
     {
         $this->locale = App::getLocale();

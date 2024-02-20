@@ -79,8 +79,9 @@
             <div class="w-full h-8 flex items-center mb-1 md:mb-3">
                 <p class="text-lg md:text-xl lg:text-2xl text-dark-blue font-plex">{{__('More Hashtags')}}</p>
             </div>
+        
         <div class="h-auto grid grid-cols-2 md:grid-cols-3  grid-rows-auto bg-white gap-1 rounded-md p-2 md:p-3 drop-shadow-sm mb-10">
-            
+            @if ($relatedHashtags->count() > 0)
             @foreach ($relatedHashtags as $item)
             @php
                 $colorClasses = [
@@ -92,11 +93,16 @@
                     <p class="text-sm font-bold">{{$item->name}}</p>
                 </a>
             @endforeach
+            @else
+                <p class="w-72 flex justify-center text-sm font-bold text-gray-300">{{__(
+                    'No Hashtags Listed'
+                )}}</p>
+            @endif
         </div>
+            
+        
+          
         </div>
-        {{-- <div class="w-full h-96 bg-orange-600 mt-32">
-
-        </div> --}}
     </div>
 </div>
 </div>

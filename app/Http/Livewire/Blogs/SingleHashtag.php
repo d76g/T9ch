@@ -48,7 +48,7 @@ class SingleHashtag extends Component
     public function render()
     {
         // Check if the current hashtag is available
-        $relatedHashtags = Hashtag::where('name',!$this->hashtag->name)->get();
+        $relatedHashtags = Hashtag::where('name','!=',$this->hashtag->name)->get();
         // Get the blogs for the current hashtag
         $result = [];
         if(strlen($this->search) >= 2){

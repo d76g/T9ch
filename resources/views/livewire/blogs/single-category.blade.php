@@ -78,6 +78,8 @@
                     <p class="text-lg md:text-xl lg:text-2xl text-dark-blue font-plex">{{__('More Categories')}}</p>
                 </div>
             <div class="h-auto grid grid-cols-2  grid-rows-auto bg-white gap-1 rounded-md p-2 md:p-3 drop-shadow-sm mb-10">
+                @if ($relatedCategories->count() > 0)
+                    
                 
                 @foreach ($relatedCategories as $item)
                 @php
@@ -90,6 +92,10 @@
                         <p class="text-xs font-bold">{{$item->category}}</p>
                     </a>
                 @endforeach
+                @else
+                <p class="w-72 flex justify-center text-sm font-bold text-gray-300">{{__('No Categories Listed')}}</p>
+
+                @endif
             </div>
             </div>
         </div>

@@ -9,10 +9,10 @@
             for="search-bar">
 
             <input wire:model.debounce.500ms="search" id="search-bar" placeholder="{{__('Search for a blog...')}}" name="search"
-                class="px-6 py-2 w-full rounded-md flex-1 outline-none bg-white font-changa  {{ textDirection($locale) }}">
+            class="block w-[90%] p-3 mx-1 ps-10 text-sm text-gray-900 border-0 rounded-lg  focus:ring-gray-100 focus:border-gray-200 {{ textDirection($locale) }}">
 
             <button type="submit"
-                class="w-full md:w-auto px-5 py-2 bg-dark-blue hover:bg-cyan-700 text-white
+                class="w-full md:w-24 px-4 py-2 bg-dark-blue hover:bg-cyan-700 text-white
                  will-change-transform overflow-hidden relative rounded-full transition-all">
                 <div class="flex items-center transition-all opacity-1">
                     <span class="text-sm font-bold whitespace-nowrap truncate mx-auto font-mono">

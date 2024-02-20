@@ -24,35 +24,44 @@ const firebaseConfig = {
   measurementId: "G-B5Q3E5F570"
 };
 Livewire.on('localeChanged', () => {
-  console.log('locale changed');
-      window.location.reload(); // Simple page refresh
+      window.location.reload();
 });
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const analytics = getAnalytics(firebaseApp);
 
+const isEditor = document.querySelector('#editor');
+if (isEditor) {
   const editor = new Editor ({
     el: document.querySelector('#editor'),
     height: '400px',
     initialEditType: 'markdown',
     placeholder: 'اكتب شيئًا مفيدًا',
   });
+  window.contentEditor = editor;
+  Livewire.on('getContent', () => {
+    // const content = editor.getMarkdown();
+    // document.querySelector('#content').value = content;
+    // Livewire.emit('store', content);
+    // editor.setMarkdown(''); 
+    const savedData = localStorage.getItem('blogFormData');
+    Livewire.emit('store', JSON.parse(savedData));
+    
+  });
+  Livewire.on('getUpdatedContent', () => {
+    const content = editor.getMarkdown();
+    document.querySelector('#editContent').value = content;
+    Livewire.emit('updateBlog', content);
+    editor.setMarkdown(''); 
+  });
+  Livewire.on('setBlogContent', $blogContent => {
+      editor.setMarkdown($blogContent); 
+      document.querySelector('#editContent').value = $blogContent;
+  });
+}
 
-Livewire.on('getContent', () => {
-  const content = editor.getMarkdown();
-  document.querySelector('#content').value = content;
-  Livewire.emit('store', content);
-  editor.setMarkdown(''); 
-});
-Livewire.on('getUpdatedContent', () => {
-  const content = editor.getMarkdown();
-  document.querySelector('#editContent').value = content;
-  Livewire.emit('updateBlog', content);
-  editor.setMarkdown(''); 
-});
-Livewire.on('setBlogContent', $blogContent => {
-    editor.setMarkdown($blogContent); 
-    document.querySelector('#editContent').value = $blogContent;
-});
 
 
+Livewire.on('removeLocalStorage', () => {
+  localStorage.removeItem('blogFormData');
+});
