@@ -1,3 +1,4 @@
+<div>
 <div class="code-menu bg-homeImageContainer hide-scrollbar relative z-10 h-auto w-full
  flex-shrink-0 overflow-visible rounded-xl py-6 m-8 font-bold outline outline-offset-4
   outline-2 border-grey-600/10 text-white lg:w-[317px] widescreen:w-[317px] "
@@ -59,4 +60,4 @@ style="">
     });
     </script>
     
-    
+</div>

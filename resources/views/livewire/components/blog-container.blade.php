@@ -1,7 +1,8 @@
+
 <div class="flex flex-col justify-center items-center mb-1.5">
     <div class="w-full lg:w-11/12 h-56 max-h-56 max-w-3xl rounded-lg {{$bgColor}}">
-        <div class="flex flex-col text-right h-28 max-h-28 justify-center {{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}} mt-5">
-            <a href="/blog/{{$blog->slug}}" class="hover:text-MyBlue px-7 text-ellipsis font-space text-md sm:text-xl">{{$blog->title}}</a>
+        <div class="flex flex-col text-right h-28 max-h-28 justify-center {{$blogLang == 'Arabic' ? 'rtl' : 'ltr'}} mt-5">
+            <a href="/blog/{{$blog->slug}}" class="hover:text-MyBlue px-7 text-ellipsis text-md sm:text-xl {{$blogLang == 'Arabic' ? 'font-plex' : 'font-space'}}">{{$blog->title}}</a>
         </div>
             <div class="flex flex-row justify-start items-center  px-5 mb-2 h-[16px] sm:h-[20px] lg:h-[22px] text-sm">
                 @foreach ($blog->hashtags as $hashtag)
@@ -27,10 +28,10 @@
                     <a href="/category/{{$blog->category->slug}}" class="border border-gray-400 px-3 text-center rounded-2xl  py-1 hover:bg-dark-blue hover:text-Mygray">{{$blog->category->category}}</a>
                 </div>
                 <span class="flex flex-col text-slate-500 sm:pr-5">
-                    <span class="{{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">
+                    <span class="{{$blogLang == 'Arabic' ? 'rtl' : 'ltr'}}">
                         <i class="far fa-clock px-0.5 "></i>
                         <span>{{$blog->reading_time}}</span>
-                        <span>{{$blog->language->language == 'Arabic' ? 'قراءة' : 'reading time'}}</span>
+                        <span>{{$blogLang == 'Arabic' ? 'قراءة' : 'reading time'}}</span>
                         
                     </span>
                 </span>

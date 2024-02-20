@@ -10,7 +10,7 @@
                                 <span class="text-MyBlue font-bold text-md md:text-xl xl:text-2xl">/ {{$blog->category->category}}</span>
                         </a>
                         <div class="pt-3">
-                                <h1 class="text-md md:text-xl lg:text-2xl text-center font-space">{{$blog->title}}</h1>
+                                <h1 class="text-md md:text-xl xl:text-4xl text-center font-plex">{{$blog->title}}</h1>
                         </div>
                         <div class="w-full flex flex-row justify-center xl:mt-2">
                                 @foreach ($blog->hashtags as $hashtag)
@@ -51,7 +51,7 @@
                         </div>
                 </div>
                 <div class="w-4/5 sm:prose sm:max-w-none sm:prose-lg md:prose-lg mt-4 {{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}} ">
-                        <x-markdown class="overflow-auto text-sm md:text-md lg:text-lg">
+                        <x-markdown  class="overflow-auto text-sm md:text-md lg:text-lg">
                                 {!! $blog->content !!}
                         </x-markdown>
                 </div>
@@ -61,9 +61,9 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full justify-items-center md:justify-around font-mono">
                         @foreach ($relatedBlog as $blog)
                         <a href="/blog/{{$blog->slug}}">
-                        <div class="bg-white flex flex-col w-72 sm:w-56 md:w-72 lg:w-56 xl:w-72 h-52 md:h-72 rounded-lg drop-shadow-md hover:scale-105 transition ease-in-out  hover:ring-2 ring-dark-blue overflow-clip ring-offset-4 hover:mx-5 hover:-translate-y-6 mb-4 lg:mb-0">
-                                <div class="flex items-start h-full hover:bg-cyan-400 hover:rounded-b-md hover:mb-1">
-                                        <span  class="h-full text-smx md:text-lg font-semibold px-3 py-6 md:py-2 transition ease-in-out delay-200 hover:translate-y-4">{{$blog->title}}</span>
+                        <div class="bg-white group flex flex-col w-72 sm:w-56 md:w-72 lg:w-56 xl:w-72 h-52 md:h-72 rounded-lg drop-shadow-md hover:scale-105 transition ease-in-out  hover:ring-2 ring-dark-blue overflow-clip ring-offset-4 hover:mx-5 hover:-translate-y-6 mb-4 lg:mb-0">
+                                <div class="flex items-start h-full group-hover:bg-cyan-400 group-hover:rounded-b-md hover:mb-1">
+                                        <span  class="h-full text-smx md:text-lg font-semibold px-3 py-6 md:py-2 transition ease-in-out delay-200 group-hover:translate-y-4">{{$blog->title}}</span>
                                 </div>
                                 <div class="bg-slate-100 rounded-t-xl">
                                         <div class="flex justify-center mt-3">

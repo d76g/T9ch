@@ -54,5 +54,8 @@
     "No Categories Found": "No Categories Found",
     "No Hashtags Found": "No Hashtags Found",
     "All Categories text": "All Categories are listed here. You can click on any of them to see the blogs related to that category.",
-    "All Hashtags text": "All Hashtags are listed here. You can click on any of them to see the blogs related to that hashtag."
+    "All Hashtags text": "All Hashtags are listed here. You can click on any of them to see the blogs related to that hashtag.",
+    "No Hashtags Listed": "No Hashtags Listed",
+    "No Categories Listed": "No Categories Listed",
+    "explorer": "explorer"
 }

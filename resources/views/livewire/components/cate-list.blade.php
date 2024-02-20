@@ -8,7 +8,7 @@
         {{-- <hr class="w-64 sm:w-11/12 h-1"> --}}
         @foreach ($category->blogs as $blog)
         <div class="mb-2 w-full pt-4">    
-            <a href="/blog/{{$blog->slug}}" class="hover:text-MyBlue"><p class="text-md md:text-xl lg:text-lg {{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">{{$blog->title}}</p></a>
+            <a href="/blog/{{$blog->slug}}" class="hover:text-MyBlue"><p class="text-md md:text-xl lg:text-lg">{{$blog->title}}</p></a>
             <p class="text-sm font-bold text-zinc-400">
                 @php
                     $created_at = $blog->created_at;
@@ -28,4 +28,9 @@
         @endforeach
     </div>
     @endforeach
+    <div class="w-full h-20">
+        <div class="w-full h-20 flex justify-center items-center">
+            <a href="/all-categories" class="text-MyBlue font-bold text-lg hover:text-red">{{__('View All')}}</a>
+        </div>
+    </div>
 </div>

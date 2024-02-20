@@ -1,4 +1,5 @@
 @section('title'){{'Home'}}@endsection
+@if ($blogs->count() >= 4)
 <div class="mb-10 mt-8 lg:mt-12">
     <div class="relative bg-Mygray w-auto sm:w-full h-full flex flex-col items-center mb-6">
         <div class="flex mb-4">
@@ -6,7 +7,7 @@
                 <h1 class="text-6xl md:text-7xl">{{__('Blogs')}}</h1>
             </div>
         </div>
-        @if ($blogs->count() >= 4)
+        
         <div class="grid grid-rows-3 gap-0 lg:grid-cols-3 lg:gap-2 h-full lg:h-70vh lg:px-10">
             {{-- Left --}}
             <div class="flex flex-col w-96 sm:w-full h-full lg:h-70vh gap-1 sm:gap-3 px-3 my-1"> 
@@ -182,7 +183,7 @@
             </div>     
             {{-- End --}}
         </div>
-        @endif
+        
         <div class="flex justify-center items-center text-lg {{fontNameForArabic($locale, 'font-plex','font-playfair')}}  bg-MyBlue sm:mt-4 rounded-lg hover:bg-slate-300">
             <a href="/blogs" class="text-white hover:text-dark-blue hover:underline transition ease-in-out hover:scale-105 px-3 py-1">{{__('View All')}}</a>
         </div>
@@ -190,5 +191,5 @@
     </div>
    
 </div>
-
+@endif
 {{-- <script src="{{asset('js/arabicNumbers.js')}}"></script> --}}

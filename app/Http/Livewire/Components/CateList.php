@@ -19,6 +19,7 @@ class CateList extends Component
         $categories->each(function ($category) {
             $category->blogs = $category->blogs->take(3);
         });
+        
         return view('livewire.components.cate-list',
         ['categories' => $categories]
         );

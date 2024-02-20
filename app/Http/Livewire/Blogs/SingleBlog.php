@@ -15,40 +15,6 @@ class SingleBlog extends Component
     public function mount($slug)
     {
         $this->blog = Blog::where('slug', '=', $slug)->first();
-        if ($this->blog) {
-             $this->callShiki($this->blog->content);  
-        }
-    }
-    protected function callShiki(...$arguments): string
-    {
-        $cwd = './../vendor/spatie/shiki-php/bin';
-    
-    // Check if the cwd exists
-        if (!$cwd) {
-            throw new \Exception("The specified cwd does not exist: " . __DIR__ . '/../bin');
-        }
-        $command = [
-            (new ExecutableFinder())->find('node', 'node', [
-                '/usr/local/bin',
-                '/opt/homebrew/bin',
-            ]),
-            'shiki.js',
-            json_encode(array_values($arguments)),
-        ];
-
-        $process = new Process(
-            command: $command,
-            cwd: $cwd,
-            timeout: null,
-        );
-        // logger($process);
-        $process->run();
-
-        if (! $process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-
-        return $process->getOutput();
     }
 
     public function render()

@@ -6,10 +6,10 @@
     <div class="relative w-full h-18">
         <x-navbar/>
     </div>
-    <div x-data="{tab:'Profile'}"  class="relative w-full h-5/6 flex flex-col p-8 gap-y-4">
+    <div  x-data="{tab:'Profile'}"  class="relative w-full h-5/6 flex flex-col p-8 gap-y-4">
         {{-- Tab Bar --}}
         <div class="flex  {{ textDirection($locale) }}">
-            <div>
+            <div x-cloak>
                 <ul class="flex gap-4 {{$locale == 'ar' ? 'font-plex' : 'font-space'}} space-x-10">
                     <a x-transition href="#" @click.prevent="tab = 'Profile'"  :class="{'border-sky-400 border-b-4 scale-110 transform ease-in-out text-black' : tab === 'Profile'}" class="text-slate-400">{{__('Profile')}}</a>
                     <a x-transition href="#" @click.prevent="tab = 'Skills'" :class="{'border-sky-400 border-b-4 scale-105 text-black' : tab === 'Skills'}" class="text-slate-400">{{__('Skills')}}</a>
@@ -17,13 +17,13 @@
             </div>
         </div>
         {{-- Tab title --}}
-        <div class="font-plex text-lg  {{ textDirection($locale) }}">
+        <div x-cloak class="font-plex text-lg  {{ textDirection($locale) }}">
             <span x-show="tab === 'Profile'">{{__('Profile')}}</span>
             <span x-show="tab === 'Skills'">{{__('Skills')}}</span>
         </div>
         {{-- Profile Content --}}
-        <div x-transition:enter.scale.70 x-transition:leave.scale.90
-        x-cloak x-show="tab === 'Profile'"
+        <div  x-transition:enter.scale.70 x-transition:leave.scale.90
+         x-show="tab === 'Profile'"
         class=" {{ textDirection($locale) }} flex flex-col lg:flex-row h-full gap-y-4 gap-x-6 justify-center items-center">
             <div class="flex flex-col gap-y-4 w-full md:w-[600px]">
                 <div class="h-full md:h-72 w-full rounded-xl flex flex-col bg-gray-50 outline outline-2 outline-gray-100">
@@ -134,45 +134,45 @@
                         @else
                         
 
-<div class="ltr relative overflow-x-auto shadow-md sm:rounded-lg m-3">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-100 ">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Position
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Company
-                </th>
-                <th scope="col" class="px-6 py-3 hidden sm:table-cell">
-                    Start Date
-                </th>
-                <th scope="col" class="px-6 py-3 hidden sm:table-cell">
-                    End Date
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($workExperience as $item)
-            <tr class="">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    {{$item->position}}
-                </th>
-                <td class="px-6 py-4">
-                    {{$item->company}}
-                </td>
-                <td class="px-6 py-4 hidden sm:table-cell">
-                    {{$item->start_date}}
-                </td>
-                <td class="px-6 py-4 hidden sm:table-cell">
-                    {{$item->end_date}}
-                </td>
-            </tr>
-            @endforeach
-            
-        </tbody>
-    </table>
-</div>
+                                <div class="ltr relative overflow-x-auto shadow-md sm:rounded-lg m-3">
+                                    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                                        <thead class="text-xs text-gray-700 uppercase bg-gray-100 ">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Position
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Company
+                                                </th>
+                                                <th scope="col" class="px-6 py-3 hidden sm:table-cell">
+                                                    Start Date
+                                                </th>
+                                                <th scope="col" class="px-6 py-3 hidden sm:table-cell">
+                                                    End Date
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($workExperience as $item)
+                                            <tr class="">
+                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                    {{$item->position}}
+                                                </th>
+                                                <td class="px-6 py-4">
+                                                    {{$item->company}}
+                                                </td>
+                                                <td class="px-6 py-4 hidden sm:table-cell">
+                                                    {{$item->start_date}}
+                                                </td>
+                                                <td class="px-6 py-4 hidden sm:table-cell">
+                                                    {{$item->end_date}}
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
 
                         @endif
                     </div>
@@ -206,7 +206,7 @@
             </div>
         </div>
         {{-- Skills Content --}}
-        <div x-transition:enter.scale.70 x-transition:leave.scale.90 x-cloak x-show="tab === 'Skills'"
+        <div  x-transition:enter.scale.70 x-transition:leave.scale.90  x-show="tab === 'Skills'"
          class="flex flex-col sm:flex-row h-full gap-x-6 gap-y-4 justify-center items-center">
             <div class="h-[595px] bg-gray-50  outline outline-2 outline-gray-100 w-80 rounded-xl">
                 <div>

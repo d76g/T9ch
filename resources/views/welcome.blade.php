@@ -13,7 +13,7 @@
         <div class="px-4 flex gap-4">
             <a href="/login" class="text-Mygray text-lg sm:text-2xl {{fontNameForArabic($locale, 'font-plex', 'font-playfair')}}">{{__('Welcome')}}</span></a>       
         </div>
-        @livewire('helpers.localization-switcher')
+        @livewire('helpers.localization-switcher', ['class' => 'absolute left-1/2 transform -translate-x-1/2 sm:-translate-x-1/4  md:-translate-x-0 top-8 sm:right-0 sm:left-0 md:right-32'])
     </nav>
     <div class="relative min-w-full h-auto overflow-hidden w-screen">
         {{-- Main Content --}}

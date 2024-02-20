@@ -8,7 +8,7 @@
         @foreach ($hashtag->blogs as $blog)
 
         <div class="mb-2 w-full pt-4">    
-            <a href="/blog/{{$blog->slug}}" class="hover:text-MyBlue"><p class="text-md md:text-xl lg:text-lg {{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}}">{{$blog->title}}</p></a>
+            <a href="/blog/{{$blog->slug}}" class="hover:text-MyBlue"><p class="text-md md:text-xl lg:text-lg">{{$blog->title}}</p></a>
             <p class="text-sm font-bold text-zinc-400">
                 @php
                     $created_at = $blog->created_at;

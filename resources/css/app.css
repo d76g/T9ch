@@ -15,6 +15,7 @@ pre{
     padding: 20px 25px;
     margin: 10px 0;
     border-radius: 20px;
+    font-family: 'Fira Code', monospace;
     
 }
 code{
@@ -120,4 +121,8 @@ code{
     position: absolute;
     bottom: 0;
     left: calc(50% - 138.5px)
+}
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-out;
 }
