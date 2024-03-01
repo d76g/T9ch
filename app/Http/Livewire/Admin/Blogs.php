@@ -31,6 +31,24 @@ class Blogs extends Component
         'hashtags' => 'required',
         'language' => 'required',
     ];
+    protected function messages()
+{
+    return [
+        'title.required' => 'The title field is required.',
+        'title.min' => 'The title must be at least 10 characters.',
+        'title.max' => 'The title must not exceed 100 characters.',
+        'content.required' => 'The content field is required.',
+        'content.string' => 'The content must be a string.',
+        'content.min' => 'The content must be at least 100 characters.',
+        'readingTime.required' => 'The reading time field is required.',
+        'readingTime.min' => 'The reading time must be at least 3 characters.',
+        'readingTime.max' => 'The reading time must not exceed 100 characters.',
+        'category.required' => 'The category field is required.',
+        'hashtags.required' => 'You must select at least one hashtag.',
+        'language.required' => 'The language field is required.',
+    ];
+}
+
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
@@ -60,12 +78,8 @@ class Blogs extends Component
     }
     public function store($content)
     {
-        $this->title = $content['title'];
-        $this->content = $content['content'];
-        $this->readingTime = $content['readingTime'];
-        $this->category = $content['category'];
-        $this->language = $content['language'];
-        $this->hashtags = $content['hashtags'];
+        $this->content = $content;
+
         $validatedData = $this->validate();
         try {
             if ($this->blogPhoto == null) {

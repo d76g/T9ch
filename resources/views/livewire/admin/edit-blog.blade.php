@@ -14,9 +14,18 @@
                     @csrf
                     <div class="w-11/12 flex flex-col justify-center items-center">
                         <div class="flex flex-col w-full">
-                            <div class="flex flex-col my-4">
+                            <div class="flex flex-col my-4"
+                            x-data="{ editTitle: $persist('') }"
+                            x-init="
+                            editTitle = localStorage.getItem('blogTitleEdit') || '{{$blog->title}}';
+                            $wire.set('title', editTitle);
+                            $watch('editTitle', value =>
+                            {
+                                $wire.set('title', value);
+                                localStorage.setItem('blogTitleEdit', value)
+                            })">
                                 <label for="title" class="mb-2">العنوان</label>
-                                <input type="text" name="title" id="title" wire:model="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <input type="text" name="title" id="title" x-model="editTitle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                 @error('title') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
 
                             </div>
@@ -37,17 +46,25 @@
                                     <img x-cloak x-show="showImage" x-transition.duration.400ms src="{{URL::asset('/storage/'.$blog->blog_photo)}}" class="w-1/4 h-1/4" alt="">
                                 @endif
                             </div>
-                            <div  x-data="{ open: false }" class="flex flex-col my-6" wire:ignore >
-                                <label for="editContent" class="mb-2"><i x-if="open" class="fa fa-eye pr-3" wire:click="setBlogContent" @click="open = ! open"></i>المحتوى</label>
-                                
-                                <div id="editor" class="text-lg {{$blog->language->language == 'Arabic' ? 'rtl' : 'ltr'}}" x-cloak x-show="open" x-transition.duration.400ms></div>
-                                <input type="hidden" name="editContent" id="editContent">
+                            <div x-data="editorEditContent()" class="flex flex-col my-6" wire:ignore>
+                                <label for="content" class="mb-2"><i class="fa fa-eye pr-3"></i>المحتوى</label>
+                                <div id="editor" class="text-lg" :class="{'rtl': isRtl, 'ltr': !isRtl}"></div>
+                                <input type="hidden" name="content" id="content" x-ref="content">
                             </div>
                         </div>
                         <div class="flex w-full gap-4">
-                            <div class="relative z-0 mb-6 w-full col-span-2">
+                            <div class="relative z-0 mb-6 w-full col-span-2"
+                            x-data="{ editCategory: $persist('') }"
+                            x-init="
+                            editCategory = localStorage.getItem('blogCategoryEdit') || '{{$blog->category->id}}';
+                            $wire.set('category', editCategory);
+                            $watch('editCategory', value =>
+                            {
+                                $wire.set('category', value);
+                                localStorage.setItem('blogCategoryEdit', value)
+                            })">
                                 <label for="category" class="mb-2">قائمة التصنيف</label>
-                                <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-plex" wire:model="category">
+                                <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-plex" x-model="editCategory">
                                 <option>إختار تصنيف للمنشور</option>
                                 @foreach ($categories as $category)
                                     <option class="font-playfair" value="{{$category->id}}" wire:key="{{$category->id}}" >{{$category->category}}</option>
@@ -55,9 +72,19 @@
                                 </select>
                                 @error('category') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
                             </div>
-                            <div class="relative z-0 mb-6 w-full col-span-2">
+                            <div class="relative z-0 mb-6 w-full col-span-2"
+                            x-data="{ editLanguage: $persist('') }"
+                            x-init="
+                            editLanguage = localStorage.getItem('blogLanguageEdit') || '{{$blog->language->id}}';
+                            $wire.set('language', editLanguage);
+                            $watch('editLanguage', value =>
+                            {
+                                $wire.set('language', value);
+                                localStorage.setItem('blogLanguageEdit', value)
+                            })"
+                            >
                                 <label for="language" class="mb-2">لغه المنشور</label>
-                                <select id="language" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-plex" wire:model="language">
+                                <select id="language"  x-model="editLanguage" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-plex">
                                 <option>إختار اللغه</option>
                                 @foreach ($languages as $language)
                                     <option class="font-playfair" value="{{$language->id}}" wire:key="{{$language->id}}" >{{$language->language}}</option>
@@ -65,9 +92,19 @@
                                 </select>
                                 @error('language') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
                             </div>
-                            <div class="relative z-0 mb-6 w-full">
+                            <div class="relative z-0 mb-6 w-full"
+                            x-data="{ editReadingTime: $persist('') }"
+                            x-init="
+                            editReadingTime = localStorage.getItem('blogReadingTimeEdit') || '{{$blog->reading_time}}';
+                            $wire.set('readingTime', editReadingTime);
+                            $watch('editReadingTime', value =>
+                            {
+                                $wire.set('readingTime', value);
+                                localStorage.setItem('blogReadingTimeEdit', value)
+                            })"
+                            >
                                 <label for="readingTime" class="mb-2">وقت للقراءة</label>
-                                <input type="text"  id="readingTime" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder=" " wire:model="readingTime" />
+                                <input type="text"  x-model="editReadingTime" id="readingTime" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder=" "  />
                                 @error('readingTime') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
                             </div>
                         </div>
@@ -83,10 +120,39 @@
                     </div>
                     <div class="w-11/12">
                         <button 
-                        wire:click="BlogUpdated" class="text-white bg-MyBlue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+                        wire:click="updateBlog" class="text-white bg-MyBlue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Save</button>
+                        <button wire:click="resetLocalStorages" class="text-white bg-red hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Undo Changes</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>    
+    </div>  
+    <script>
+        function editorEditContent() {
+    return {
+        isRtl: @entangle('blog.language.language').defer === 'Arabic',
+        init() {
+            setTimeout(() => {
+                this.setContent();
+            }, 1000); // Delay to ensure editor is initialized
+        },
+        setContent() {
+            const initialContent = localStorage.getItem('blogContentEdit') || @json($blog->content);
+            this.$refs.content.value = initialContent;
+            
+            if (window.contentEditor) {
+                window.contentEditor.setMarkdown(initialContent);
+                Livewire.emit('contentUpdated', initialContent);
+                // Ensure changes in the editor update local storage and the hidden input
+                window.contentEditor.on('change', () => {
+                    const content = window.contentEditor.getMarkdown();
+                    localStorage.setItem('blogContentEdit', content);
+                    this.$refs.content.value = content;
+                    Livewire.emit('contentUpdated', content);
+                });
+            }
+        }
+    }
+}
+    </script>  
 </div>

@@ -70,7 +70,9 @@
                             </td>
                             <td class="py-4 px-6" wire:key="data-{{ $data['id'] }}">
                                 @if($editedCategoryIndex !== $index)
-                                {{$data['category']}}
+                                <a href="/category/{{$data['slug']}}" class="hover:text-blue-600">
+                                    {{$data['category']}}
+                                </a>
                                 @else
                                     <input type="text" wire:model.defer="categoryList.{{$index}}.category" class="mt-2 text-sm pl-2 pr-4 rounded-lg border border-spacing-1">
                                     @if($errors->has('categoryList.' . $index . '.category'))
@@ -84,7 +86,7 @@
                                     @if($editedCategoryIndex !== $index)
                                     {{$data['desc']}}
                                     @else
-                                        <input type="text" wire:model.defer="categoryList.{{$index}}.desc" class="mt-2 text-sm pl-2 pr-4 rounded-lg border border-spacing-1">
+                                        <input type="text" wire:model.defer="categoryList.{{$index}}.desc" class="mt-2 text-sm pl-2 pr-4 rounded-lg border border-spacing-1 w-full">
                                         @if($errors->has('categoryList.' . $index . '.desc'))
                                         <div class="text-red">
                                             <span class="error text-xs">{{ $errors->first('categoryList.' . $index . '.desc') }}</span>    
@@ -127,9 +129,9 @@
                     {{-- Row 1 --}}
                     <div class="grid md:grid-rows-2 md:gap-6">
                     <div class="relative z-0 mb-6 w-full">
-                        <input type="text"  id="hashtag" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " wire:model="hashtag" />
+                        <input type="text"  id="hashtag" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" wire:model="hashtag" />
                         
-                        <label for="hashtag" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-MyBlue-600 peer-focus:dark:text-MyBlue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Hashtag</label>
+                        <label for="hashtag" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-MyBlue-600 peer-focus:dark:text-MyBlue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Hashtag name with no space</label>
                         @error('hashtag') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
                     </div>
                     <div class="relative z-0 mb-6 w-full">
@@ -172,7 +174,9 @@
                       </td>
                       <td class="py-4 px-6" wire:key="data-{{ $data['id'] }}">
                           @if($editedHashtagIndex !== $index)
-                          {{$data['name']}}
+                          <a href="/hashtag/{{$data['name']}}" class="hover:text-blue-600">
+                            {{$data['name']}}
+                          </a>
                           @else
                               <input type="text" wire:model.defer="hashtagList.{{$index}}.name" class="mt-2 text-sm pl-2 pr-4 rounded-lg border border-spacing-1">
                               @if($errors->has('hashtagList.' . $index . '.name'))
@@ -186,7 +190,7 @@
                               @if($editedHashtagIndex !== $index)
                               {{$data['description']}}
                               @else
-                                  <input type="text" wire:model.defer="hashtagList.{{$index}}.description" class="mt-2 text-sm pl-2 pr-4 rounded-lg border border-spacing-1">
+                                  <input type="text" wire:model.defer="hashtagList.{{$index}}.description" class="w-full mt-2 text-sm pl-2 pr-4 rounded-lg border border-spacing-1">
                                   @if($errors->has('hashtagList.' . $index . '.description'))
                                         <div class="text-red">
                                             <span class="error text-xs">{{$errors->first('hashtagList.' . $index . '.description')}}</span>    

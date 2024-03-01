@@ -27,4 +27,9 @@
         @endforeach
     </div>
     @endforeach
+    <div class="w-full h-20">
+        <div class="w-full h-20 flex justify-center items-center">
+            <a href="/all-hashtags" class="text-MyBlue font-bold text-lg hover:text-red">{{__('View All')}}</a>
+        </div>
+    </div>
 </div>

@@ -16,6 +16,7 @@ use App\Http\Livewire\Admin\Pages\Achievements;
 
 use App\Http\Livewire\Admin\AboutMe as AdminAboutMe;
 use App\Http\Livewire\Admin\BlogCategory as AdminBlogCategory;
+use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\Pages\CurrentCourse;
 use App\Http\Livewire\Admin\Pages\Edit\EditProfile;
 use App\Http\Livewire\Admin\Pages\Profile;
@@ -47,9 +48,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/about-me/current-course', CurrentCourse::class)->name('myCourses');
     Route::get('/blogs', Blogs::class)->name('adminBlogs');
     Route::get('/blog/{id}/edit', EditBlog::class)->name('editBlog');
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
 });
 // Other Routes
 // Route::middleware('auth')->group(function () {

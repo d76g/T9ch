@@ -141,11 +141,13 @@ class BlogCategory extends Component
                     }           
                 }
             } else {
+                
                 $this->validate([
-                    'hashtagList.*.name' => 'required|min:6|max:50',
-                    'hashtagList.*.description' => 'required|min:10|string|max:255',
+                    'hashtagList.*.name' => 'required|min:3|max:20',
+                    'hashtagList.*.description' => 'required|min:10|max:255',
                 ]);
                 $updateHashtag = $this->hashtagList[$id] ?? null;
+                logger($this->hashtagList[$id]);
                 if(!is_null($updateHashtag)){
                     optional(Hashtag::find($updateHashtag['id']))->update($updateHashtag);             
                 }

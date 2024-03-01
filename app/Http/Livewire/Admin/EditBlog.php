@@ -24,7 +24,7 @@ class EditBlog extends Component
     public $language;
     public $hashtags = [];
     public $imageRemoved = false;
-    protected $listeners  = ['updateBlog'];
+    protected $listeners  = ['contentUpdated'];
     protected $rules = [
         'title' => 'required|min:10|max:100',
         'content' => 'required|string|min:10',
@@ -71,10 +71,9 @@ class EditBlog extends Component
     {
         $this->emit('getUpdatedContent');
     }
-    public function setBlogContent()
+    public function contentUpdated($content)
     {   
-        $this->content = $this->blog->content;
-        $this->emit('setBlogContent',$this->content);
+        $this->content = $content;
     }
     public function removeImage()
 {
@@ -95,9 +94,9 @@ class EditBlog extends Component
     $this->imageRemoved = true;
 }
 
-    public function updateBlog($content){
+    public function updateBlog(){
         
-        $this->content = $content;
+        // $this->content = $content;
         // logger($content);
         $id = $this->blog->id;
         $this->validate();
@@ -130,11 +129,16 @@ class EditBlog extends Component
                 'icon' => 'success',
                 'iconColor' => 'green',
             ]);
+            $this->resetLocalStorages();
             return redirect()->route('adminBlogs');
         } catch (\Throwable $th) {
             dd($th);
         }
         
+    }
+    public function resetLocalStorages()
+    {
+        $this->emit('removeBlogEditLocalStorage');
     }
     public function render()
     {

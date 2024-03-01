@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('category') }}" :active="request()->routeIs('category')">
-                        {{ __('Category') }}
+                        {{ __('Categories') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('adminBlogs') }}" :active="request()->routeIs('adminBlogs')">
                         {{ __('Blogs') }}
