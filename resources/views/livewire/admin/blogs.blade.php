@@ -23,43 +23,36 @@
 
                 </div>
                 
-                <form x-data="formHandler()"   id="blog-form" wire:submit.prevent="BlogAdded" class="w-full flex flex-col justify-center items-center" enctype="multipart/form-data">
+                <form id="blog-form" class="w-full flex flex-col justify-center items-center" enctype="multipart/form-data">
                     @csrf
-                    <div class="w-11/12 flex flex-col justify-center items-center">
+                    <div class="w-11/12 flex flex-col justify-center items-center" x-data>
                         <div class="flex flex-col w-full">
-                            <div class="flex flex-col my-2">
-                                <label for="title" class="mb-2">العنوان</label>
-                                <input type="text" name="title" id="title" x-ref="titleInput"
-                                x-on:load.window="$refs.titleInput.dispatchEvent(new Event('input'))" x-model="formFields.title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                @error('title') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
-
+                            <div class="flex flex-col my-2"
+                            x-data="{ title: $persist('') }"
+                            x-init="title = localStorage.getItem('blogTitle') || '';
+                            $wire.set('title', title);
+                            $watch('title', value =>
+                            {
+                                $wire.set('title', value);
+                                localStorage.setItem('blogTitle', value)
+                            })">
+                           <label for="title" class="mb-2">العنوان</label>
+                           <input type="text" name="title" id="title" x-model.lazy="title"
+                                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                           @error('title') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
                             </div>
-                            <div class="flex flex-col my-2">
-                                <label for="blogPhoto" class="mb-2">صورة</label>
-                                <input type="file" name="blogPhoto" id="blogPhoto" wire:model="blogPhoto"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                @error('blogPhoto') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
-
-                            </div>
-                            <div class="flex flex-col my-4" wire:ignore>
-                                <label for="editor" class="mb-2">المحتوى</label>
-                                <div id="editor" class="text-lg"></div>
-                                <input type="hidden" name="content" id="content" x-model="formFields.content">
-                            </div>
-                        </div>
-                        <div class="flex flex-col w-full gap-1">
-                            <div class="relative z-0 mb-2 w-full">
-                                <label for="category" class="mb-2">قائمة التصنيف</label>
-                                <select x-model="formFields.category" id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-plex" wire:model="category">
-                                <option>إختار تصنيف للمنشور</option>
-                                @foreach ($categories as $category)
-                                    <option class="font-playfair" value="{{$category->id}}" wire:key="{{$category->id}}"  >{{$category->category}}</option>
-                                @endforeach
-                                </select>
-                                @error('category') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
-                            </div>
-                            <div class="relative z-0 mb-2 w-full">
+                       
+                            <div class="relative z-0 mb-2 w-full"
+                            x-data="{ language: $persist('') }"
+                            x-init="language = localStorage.getItem('blogLanguage') || '';
+                                $wire.set('language', language);
+                             $watch('language', value => {
+                                $wire.set('language', value);
+                                localStorage.setItem('blogLanguage', value)
+                            })">
+                            
                                 <label for="language" class="mb-2">لغه المنشور</label>
-                                <select id="language" x-model="formFields.language" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-plex" wire:model="language">
+                                <select id="language" x-model.lazy="language"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-plex" >
                                 <option>إختار اللغه</option>
                                 @foreach ($languages as $language)
                                     <option class="font-playfair"  value="{{$language->id}}" wire:key="{{$language->id}}" >{{$language->language}}</option>
@@ -67,25 +60,74 @@
                                 </select>
                                 @error('language') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
                             </div>
+                            <div class="flex flex-col my-2">
+                                <label for="blogPhoto" class="mb-2">صورة</label>
+                                <input type="file" name="blogPhoto" id="blogPhoto" wire:model="blogPhoto"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                @error('blogPhoto') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
+
+                            </div>
+                            <div x-data="editorContent()" class="flex flex-col my-4" wire:ignore>
+                                <label for="content" class="mb-2">المحتوى</label>
+                                <div id="editor" class="text-lg"></div>
+                                <input type="hidden" name="content" id="content" x-ref="content">
+                                
+                            </div>
+                            @error('content') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
+
+                        </div>
+                        <div class="flex flex-col w-full gap-1">
+                            <div class="relative z-0 mb-2 w-full"
+                            x-data="{ category: $persist('') }"
+                            x-init="category = localStorage.getItem('blogCategory') || '';
+                            $wire.set('category', category);
+                             $watch('category', value => {
+                                $wire.set('category', value);
+                                localStorage.setItem('blogCategory', value)
+                             })">
                             
-                            <div class="relative z-0 mb-2 w-full">
+                                <label for="category" class="mb-2">قائمة التصنيف</label>
+                                <select
+                                id="category"  x-model.lazy="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-plex" >
+                                <option>إختار تصنيف للمنشور</option>
+                                @foreach ($categories as $category)
+                                    <option class="font-playfair" value="{{$category->id}}" wire:key="{{$category->id}}"  >{{$category->category}}</option>
+                                @endforeach
+                                </select>
+                                @error('category') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
+                            </div>
+                            
+                            
+                            <div class="relative z-0 mb-2 w-full"
+                            x-data="{ readingTime: $persist('') }"
+                            x-init="readingTime = localStorage.getItem('blogReadingTime') || '';
+                            $wire.set('readingTime', readingTime);
+                             $watch('readingTime', value => {
+                                localStorage.setItem('blogReadingTime', value);
+                                $wire.set('readingTime', value);
+                             })">
                                 <label for="readingTime" class="mb-2">وقت للقراءة</label>
-                                <input type="text"  id="readingTime" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder=" " wire:model="readingTime" x-model="formFields.readingTime" />
+                                <input type="text" x-model="readingTime"  id="readingTime" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder=" "  />
                                 @error('readingTime') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
                             </div>
                             
-                            <div class="relative z-0 mb-2 w-full">
-                                <div class="flex flex-col mb-2 ">
-                                    <label for="hashtags" class="">Hashtags</label>
-                                    <p class="text-xs text-gray-400 flex justify-start">Press Ctrl or Command to multi select</p>
-                                </div>
-                                <select x-model="formFields.hashtags" id="hashtags" name="hashtags[]" multiple class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-3 font-plex" wire:model="hashtags">
-                                    @foreach ($hashtagsList as $hashtag)
-                                        <option class="font-playfair"  value="{{$hashtag->id}}">{{$hashtag->name}}</option>
-                                    @endforeach
-                                </select>
-                                @error('hashtags') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
-                            </div>
+                            <div class="relative z-0 mb-2 w-full"
+                            x-data="{ hashtags: $persist([]).as('blogHashtags') }"
+                            x-init="$watch('hashtags', value => $wire.set('hashtags', value))"
+                             >
+                           <div class="flex flex-col mb-2">
+                               <label for="hashtags" class="">Hashtags</label>
+                               <p class="text-xs text-gray-400 flex justify-start">Press Ctrl or Command to multi select</p>
+                           </div>
+                           <select id="hashtags" x-model="hashtags" name="hashtags[]" multiple
+                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-3 font-plex">
+                               @foreach ($hashtagsList as $hashtag)
+                                   <option class="font-playfair" value="{{ $hashtag->id }}">{{ $hashtag->name }}</option>
+                               @endforeach
+                           </select>
+                           @error('hashtags') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
+                       </div>
+                       
+
                             
                             
                         </div>
@@ -150,52 +192,33 @@
             </div>
             </div>
             <script>
-                
-                function formHandler() {
-                    console.log('formHandler');
+                function editorContent(){
                     return {
-                        formFields: {
-                            title: '',
-                            content: '',
-                            category: '',
-                            language: '',
-                            readingTime: '',
-                            hashtags: [],
-                        },
                         init() {
-                            this.loadFormData();
-                            this.autoSaveFormData();
-                            // window.addEventListener('beforeunload', () => this.saveFormData());
+                            setTimeout(() => {
+                                this.setContent();
+                            }, 1000);
                         },
-                        loadFormData() {
-                            const savedData = localStorage.getItem('blogFormData');
-                            if (savedData) {
-                                console.log('getting content');
-                                this.formFields = JSON.parse(savedData);
-                                if (window.contentEditor) {
-                                    console.log('getting content');
-                                    window.contentEditor.setMarkdown(this.formFields.content);
-                                }
-                            }
-                        },
-                        saveFormData() {
+                        setContent(){
+                            // Listen for the custom event from the editor
+                            window.addEventListener('editorContentChanged', (event) => {
+                                const { content } = event.detail;
+                                // Update local storage and hidden input field
+                                localStorage.setItem('blogContent', content);
+                                this.$refs.content.value = content;
+                            });
+                            console.log( window.contentEditor);
+                            // Load initial content from localStorage if exists
+                            const initialContent = localStorage.getItem('blogContent') || '';
+                            this.$refs.content.value = initialContent; 
+                            // Assuming the editor is accessible globally, you can directly set its content if needed
                             if (window.contentEditor) {
-                                window.contentEditor.on('change', () => {
-                                    this.formFields.content = window.contentEditor.getMarkdown(); // or getHtml(), depending on your needs
-                                });
+                                console.log('Setting initial content');
+                                window.contentEditor.setMarkdown(initialContent);
                             }
-                            const savedContent = this.formFields.content;
-                            if (window.contentEditor && savedContent) {
-                                window.contentEditor.setMarkdown(savedContent);
-                            }
-                            localStorage.setItem('blogFormData', JSON.stringify(this.formFields));
-                        },
-                        autoSaveFormData() {
-                            setInterval(() => {
-                                this.saveFormData();
-                            }, 5000); // Save data every 5 seconds
-                        },
-                    };
+                        }
+                        
+                    }
                 }
             </script>
 </div>
