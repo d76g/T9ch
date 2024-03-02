@@ -7,14 +7,46 @@
         <div class="mb-4 text-sm text-gray-600">
             {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
         </div>
-
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
+        @if (session('status') )
+            @if (session('status') == 'passwords.sent')
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'A password reset link has been sent to your email address.',
+                            icon: 'success',
+                            timer: 1500,
+                            confirmButtonText: 'OK'
+                        });
+                    });
+            </script>
         @endif
-
-        <x-jet-validation-errors class="mb-4" />
+        @endif
+        @if($errors->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var errorMessage = @json($errors->first('email'));
+                
+                // Localizing the errorMessage if it matches certain keys
+                if (errorMessage === 'passwords.user') {
+                    errorMessage = @json(__('We can\'t find a user with that email address.'));
+                } else {
+                    // Default to translating the errorMessage directly
+                    errorMessage = @json(__($errors->first('email')));
+                }
+        
+                Swal.fire({
+                    title: @json(__('Whoops! Something went wrong.')),
+                    text: errorMessage,
+                    icon: 'error',
+                    timer: 5000,
+                    confirmButtonText: @json(__('OK'))
+                });
+            });
+        </script>
+        
+        @endif
+        {{-- <x-jet-validation-errors class="mb-4" /> --}}
 
         <form method="POST" action="{{ route('password.email') }}">
             @csrf

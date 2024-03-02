@@ -1,13 +1,34 @@
+@section('title', 'Login')
+@php
+    $locale = app()->getLocale();
+@endphp
 <x-guest-layout>
     <div class="relative h-screen w-screen">
     <div class="absolute inset-0 sm:h-screen sm:w-full md:bg-cover bg-center bg-no-repeat login-background-blur"
      style="background-image: url({{URL::asset('/image/login-background-3.png')}})"></div>
-    <div class="absolute w-full h-screen flex flex-col justify-center items-center z-20">
-        <div class="absolute bottom-5 bg-white w-80 py-4 px-8 sm:w-96 md:w-[500px] h-auto md:py-6 md:px-14 rounded-md font-space drop-shadow-sm">
+    <div class="absolute w-full h-screen flex flex-col justify-center items-center z-20 {{textDirection($locale)}}">
+        <div class="absolute bottom-5 bg-white w-80 py-4 px-8 sm:w-96 md:w-[500px] h-auto md:py-6 md:px-14 rounded-md {{fontNameForArabic($locale, 'font-plex','font-space')}} drop-shadow-sm">
             <div class="text-xl sm:text-2xl  w-full text-center py-1">
-                <p>Welcome to T9chnih</p>
+                <a href="/" class="hover:text-blue-600"><p>{{__('Welcome to T9chnih')}}</p></a> 
             </div>
-            <p class="text-xs sm:text-sm py-1">Sign In using</p>
+            @if($errors->any())
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                        title: @json(__('Whoops! Something went wrong.')),
+                        text: @json(__('Check email and password and try again.')),
+                        icon: 'error',
+                        iconColor: '#dc3545',
+                        timer: 5000,
+                        width: '25rem',
+                        toast: true,
+                        position: 'top-end',
+                        confirmButtonText: @json(__('OK'))
+                    });
+                });
+            </script>
+            @endif
+            <p class="text-xs sm:text-sm py-1">{{__('Sign in using')}}</p>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 
