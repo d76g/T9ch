@@ -58,6 +58,20 @@
     "No Hashtags Listed": "لم يتم سرد أي هاشتاجات",
     "No Categories Listed": "لم يتم سرد أي فئات",
     "explorer": "استكشاف",
-    "Dashboard": "التحكم"
+    "Dashboard": "التحكم",
+    "You will be redirected to the login page if reset is successful.": ".سيتم توجيهك إلى صفحة تسجيل الدخول إذا كانت العملية ناجحة -",
+    "Enter your email and new password to reset your password.": "أدخل بريدك الإلكتروني وكلمة المرور الجديدة لإعادة تعيين كلمة المرور الخاصة بك.",
+    "Reset Password": "إعادة تعيين كلمة المرور",
+    "Email": "البريد الإلكتروني",
+    "Password": "كلمة المرور",
+    "New Password": "كلمة المرور الجديدة",
+    "Confirm Password": "تأكيد كلمة المرور",
+    "Forgot your password?": "نسيت كلمة المرور؟",
+    "Log in": "تسجيل الدخول",
+    "Remember me": "تذكرني",
+    "Sign in using": "تسجيل الدخول باستخدام",
+    "Welcome to T9chnih": "مرحبًا بك في تقنية",
+    "Whoops! Something went wrong.": "عذرًا! حدث خطأ ما.",
+    "Check email and password and try again.": "تحقق من البريد الإلكتروني وكلمة المرور وحاول مرة أخرى."
 
 }

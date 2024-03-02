@@ -58,5 +58,12 @@
     "No Hashtags Listed": "No Hashtags Listed",
     "No Categories Listed": "No Categories Listed",
     "explorer": "explorer",
-    "Dashboard": "Dashboard"
+    "Dashboard": "Dashboard",
+    "Enter your email and new password to reset your password.": "Enter your email and new password to reset your password.",
+    "You will be redirected to the login page if reset is successful.": "You will be redirected to the login page if reset is successful.",
+    "Reset Password": "Reset Password",
+    "Email": "Email",
+    "Password": "Password",
+    "New Password": "New Password",
+    "Confirm Password": "Confirm Password"
 }
