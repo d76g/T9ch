@@ -3,7 +3,7 @@
         <div class="fixed w-full h-14 z-30">
                 <x-navbar/>
         </div>
-        <div class="relative sm:w-10/12 w-4/5 lg:w-3/5 bg-white max-h-max mt-24 pb-4 rounded-t-lg flex flex-col justify-center items-center font-plex">
+        <div class="relative sm:w-10/12 w-[95%] lg:w-3/4 bg-white max-h-max mt-24 pb-4 rounded-lg flex flex-col justify-center items-center font-plex">
         {{-- Title & Category --}}
                 <div class="w-5/6 lg:w-4/6 h-auto md:h-2/6 flex flex-col justify-center items-center pt-14">
                         <a href="/category/{{$blog->category->slug}}" target="_blank">
@@ -57,21 +57,24 @@
                 </div>
         </div>
         {{-- Related Blogs --}}
-        <div class="relative sm:10/12 lg:w-11/12 w-11/12 mt-10 md:mt-20 mb-12">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full justify-items-center md:justify-around font-mono">
+        <div class="relative sm:10/12 lg:w-3/4 w-11/12 mt-10 md:mt-20 mb-12 bg-white rounded-lg p-3">
+                <div class="{{textDirection($locale)}} sm:pb-4 lg:pb-6 xl:pb-10 px-4">
+                        <span class="text-md md:text-xl xl:text-2xl font-plex">{{__('More Blogs')}}</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full xl:grid-cols-3 md:gap-y-4  lg:gap-y-11  justify-items-center md:justify-around font-mono">
                         @foreach ($relatedBlog as $blog)
                         <a href="/blog/{{$blog->slug}}">
-                        <div class="bg-white group flex flex-col w-72 sm:w-56 md:w-72 lg:w-56 xl:w-72 h-52 md:h-72 rounded-lg drop-shadow-md hover:scale-105 transition ease-in-out  hover:ring-2 ring-dark-blue overflow-clip ring-offset-4 hover:mx-5 hover:-translate-y-6 mb-4 lg:mb-0">
-                                <div class="flex items-start h-full group-hover:bg-cyan-400 group-hover:rounded-b-md hover:mb-1">
-                                        <span  class="h-full text-smx md:text-lg font-semibold px-3 py-6 md:py-2 transition ease-in-out delay-200 group-hover:translate-y-4">{{$blog->title}}</span>
+                        <div class="bg-gray-50 group flex flex-col w-[22rem] sm:w-56 md:w-72 lg:w-56 xl:w-72 h-52 md:h-72 rounded-lg drop-shadow-md lg:hover:scale-105 transition ease-in-out  hover:ring-2 ring-dark-blue overflow-clip ring-offset-4 hover:mx-5 lg:hover:-translate-y-6 mb-4 lg:mb-0">
+                                <div class="flex items-start h-full lg:group-hover:bg-cyan-400 lg:group-hover:rounded-b-md hover:mb-1">
+                                        <span class="font-plex h-full text-sm md:text-lg px-3 py-6 md:py-2 transition ease-in-out delay-200 lg:group-hover:translate-y-4">{{$blog->title}}</span>
                                 </div>
-                                <div class="bg-slate-100 rounded-t-xl">
+                                <div class="bg-slate-100 rounded-t-xl text-sm md:text-md">
                                         <div class="flex justify-center mt-3">
-                                                <span class="text-sm md:text-lg">{{$blog->category->category}}</span>
+                                                <span class="">{{$blog->category->category}}</span>
                                         </div>
-                                        <div class="px-3 flex justify-between text-gray-500 mb-2 text-sm md:text-lg">
+                                        <div class="px-3 flex justify-between text-gray-500 mb-2">
                                                 <span>{{$blog->created_at->format('d M Y')}}</span>
-                                                <span> {{$blog->reading_time}}</span>
+                                                <span class="font-plex"> {{$blog->reading_time}}</span>
                                         </div>
                                 </div>
                         </div>
@@ -80,5 +83,38 @@
                 </div>
         </div>
         <x-guest-footer/>
+        <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var codeElements = document.querySelectorAll('pre code'); // Assuming each <code> is inside a <pre>
+                    codeElements.forEach(function(codeElement, index) {
+                        // Assign a unique ID to each code element
+                        var uniqueId = 'codeBlock' + index;
+                        codeElement.id = uniqueId;
+                
+                        // Optional: Create and append a copy button
+                        var copyButton = document.createElement('button');
+                        copyButton.innerText = 'Copy';
+                        copyButton.className = 'copyButton';
+                        copyButton.onclick = function() { copyCode(uniqueId); };
+                        copyButton.addEventListener('click', function() {
+                            copyButton.innerText = 'Copied!';
+                            setTimeout(function() {
+                                copyButton.innerText = 'Copy';
+                            }, 1000);
+                        });
+                        // Assuming each <code> tag is wrapped in a <pre>, insert the button before the <pre>
+                        codeElement.parentNode.style.position = 'relative';
+                        codeElement.parentNode.insertBefore(copyButton, codeElement);
+                    });
+                });
+                
+                function copyCode(elementId) {
+                    var text = document.getElementById(elementId).innerText;
+                    navigator.clipboard.writeText(text).then(function() {
+                    }, function(err) {
+                        console.error('Could not copy text:', err);
+                    });
+                }
+                </script>
+                
 </div>
-

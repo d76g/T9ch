@@ -41,3 +41,4 @@
         
     </body>
 </html>
+<script src="{{asset('js/sweetAlertEvents.js')}}"></script>
