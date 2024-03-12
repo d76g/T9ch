@@ -16,7 +16,22 @@ pre{
     margin: 10px 0;
     border-radius: 20px;
     font-family: 'Fira Code', monospace;
-    
+    position: relative;
+    overflow:auto;
+}
+.copyButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background-color: #191B28;
+    color: white;
+    border-radius: 10px;
+    padding: 6px;
+    /* Additional styling for the button */
+}
+.copyButton:hover {
+    background-color: #2d3b48;
 }
 code{
     font-family: 'Fira Code', monospace;

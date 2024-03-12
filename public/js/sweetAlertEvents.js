@@ -79,3 +79,15 @@ window.addEventListener('truncate', (e)=>{
   }
   })
 })
+window.addEventListener('copied', function(){
+  Swal.fire({
+  title:'Copied',
+  icon:'success',
+  iconColor:'#4caf50',
+  timer: 1500,
+  width:'24em',
+  toast:true,
+  position:'top-end',
+  showConfirmButton:false,
+});
+})
